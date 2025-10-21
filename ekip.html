@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewCube Ekibi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;font-family:Poppins,Arial;background:#0b1220;color:#fff}
+    header{background:#0f162a;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+    a{color:#7cffc4;text-decoration:none}
+    .wrap{max-width:950px;margin:auto;padding:20px}
+    h1{text-align:center;color:#62d0ff;margin-bottom:30px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    @media(max-width:820px){.grid{grid-template-columns:1fr}}
+    .card{background:#111a2e;padding:20px;border-radius:14px;text-align:center;border:1px solid rgba(255,255,255,.07)}
+    .rank{color:#7cffc4;font-weight:600}
+    img{width:90px;height:90px;border-radius:50%;margin-bottom:10px;border:2px solid #62d0ff}
+    footer{text-align:center;color:#9fb2d9;margin:30px 0}
+  </style>
+</head>
+<body>
+<header>
+  <a href="index.html">← Ana Sayfa</a>
+  <strong>NewCube Ekibi</strong>
+</header>
+
+<div class="wrap">
+  <h1>Sunucu Ekibi</h1>
+  <div class="grid">
+    <div class="card">
+      <img src="https://i.imgur.com/bcR5B5Y.png" alt="Emirhan">
+      <h3>Emirhan</h3>
+      <div class="rank">Kurucu & Geliştirici</div>
+      <p>Sunucunun kurucusu, web sitesi ve sistem geliştirmelerinden sorumlu.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://i.imgur.com/n0eQ9kV.png" alt="Yönetici">
+      <h3>Alperen</h3>
+      <div class="rank">Yönetici</div>
+      <p>Sunucu ekonomisi ve oyuncu dengelemesiyle ilgilenir.</p>
+    </div>
+
+    <div class="card">
+      <img src="https://i.imgur.com/GB4g2QG.png" alt="Moderatör">
+      <h3>Ahmet</h3>
+      <div class="rank">Moderatör</div>
+      <p>Oyuncuların güvenli ve keyifli bir ortamda oynamasını sağlar.</p>
+    </div>
+  </div>
+</div>
+
+<footer>© <span id="y"></span> NewCube Network</footer>
+<script>document.getElementById("y").textContent=new Date().getFullYear();</script>
+</body>
+</html>
