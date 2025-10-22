@@ -4,14 +4,39 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SkyHaven Network – Resmi Site</title>
+
+  <!-- SEO & Paylaşım -->
+  <meta name="description" content="SkyHaven Network: Skyblock ağırlıklı, kaliteli ve adil oyun deneyimi.">
+  <meta property="og:title" content="SkyHaven Network" />
+  <meta property="og:description" content="Skyblock ağırlıklı, kaliteli ve adil oyun deneyimi." />
+  <meta property="og:type" content="website" />
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" href='data:image/svg+xml;utf8,
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+   <defs>
+     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+       <stop offset="0%" stop-color="%2362d0ff"/><stop offset="100%" stop-color="%237cffc4"/>
+     </linearGradient>
+   </defs>
+   <rect width="96" height="96" rx="20" fill="%230b1220"/>
+   <path d="M48 16 76 32 48 48 20 32 48 16Z" fill="url(%23g)"/>
+   <path d="M48 50 70 62 48 74 26 62 48 50Z" fill="%23bfefff"/>
+  </svg>' />
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
+      /* SKyHaven renk teması */
       --bg:#0b1220;
       --panel:#101a2f;
+      --panel-soft:rgba(16,26,47,.9);
       --text:#e9f1ff;
       --muted:#9fb2d9;
-      --pri:#62d0ff; --acc:#7cffc4; --btn:#6b7bff;
+      --pri:#62d0ff;   /* mavi */
+      --acc:#7cffc4;   /* yeşil */
+      --btn:#6b7bff;   /* mor-mavi */
+      --danger:#ff8f8f;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -20,14 +45,14 @@
       color:var(--text); background:var(--bg); line-height:1.6; overflow-x:hidden;
     }
 
-    /* tam ekran yıldız kanvası */
+    /* Tam ekran yıldızlı arka plan */
     #bg{
-      position:fixed; inset:0; width:100%; height:100vh;
-      z-index:-1; background:radial-gradient(1200px 500px at 50% -200px, #13223f 0%, #0b1220 55%);
+      position:fixed; inset:0; width:100%; height:100vh; z-index:-1;
+      background:radial-gradient(1200px 500px at 50% -200px, #13223f 0%, #0b1220 55%);
     }
 
-    /* fade-in */
-    @keyframes fadeIn { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
+    /* Açılış animasyonu */
+    @keyframes fadeIn { from{opacity:.0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
 
     /* Üst menü */
     header{
@@ -35,48 +60,63 @@
       backdrop-filter: blur(6px);
       background:rgba(15,22,42,.88);
       border-bottom:1px solid rgba(255,255,255,.06);
-      animation:fadeIn 1s ease;
+      animation:fadeIn 0.8s ease;
     }
-    .nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px}
+    .nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 18px}
+
+    /* Inline logo + marka */
     .brand{
-      font-weight:800; font-size:22px; line-height:1;
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px; line-height:1;
+    }
+    .brand svg{width:34px; height:34px; flex:0 0 34px}
+    .brand-title{
       background:linear-gradient(90deg,var(--pri),var(--acc));
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      transition:transform .3s ease;
+      font-size:20px;
+      transition:transform .25s ease;
     }
-    .brand:hover{transform:scale(1.05)}
+    .brand-title small{display:block; font-size:12px; color:var(--muted); background:transparent; -webkit-text-fill-color:initial; color:var(--muted)}
+    .brand:hover .brand-title{ transform:translateY(-1px) }
+
     nav a{
       color:var(--muted); text-decoration:none; font-weight:600; margin-left:16px; position:relative; transition:color .3s ease;
     }
     nav a::after{
       content:""; position:absolute; left:0; bottom:-4px; width:0; height:2px;
-      background:linear-gradient(90deg,var(--pri),var(--acc)); transition:width .3s ease;
+      background:linear-gradient(90deg,var(--pri),var(--acc)); transition:width .25s ease;
     }
     nav a:hover{color:#fff} nav a:hover::after{width:100%}
 
+    /* Genel layout */
     .wrap{max-width:1100px;margin:18px auto;padding:0 18px}
     .card{
-      background:rgba(16,26,47,.9);
-      border:1px solid rgba(255,255,255,.07);
+      background:var(--panel-soft); border:1px solid rgba(255,255,255,.07);
       border-radius:16px; padding:20px; box-shadow:0 10px 25px rgba(0,0,0,.15);
-      margin-bottom:22px; animation:fadeIn 1.2s ease;
+      margin-bottom:22px; animation:fadeIn 1s ease;
     }
     h1,h2{margin:0 0 14px} h1{font-size:34px} h2{font-size:28px}
-    .hero{padding:26px;border-radius:18px;animation:fadeIn 1s ease}
-    .hero h1{font-size:34px;margin-bottom:10px;background:linear-gradient(90deg,#fff,#cfe9ff);-webkit-background-clip:text;color:transparent}
+
+    /* Hero */
+    .hero h1{
+      background:linear-gradient(90deg,#fff,#cfe9ff);
+      -webkit-background-clip:text; color:transparent;
+      margin-bottom:8px;
+    }
     .badges{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 4px}
     .badge{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#d6e6ff;padding:6px 10px;border-radius:10px;font-weight:600;font-size:13px;transform:scale(.95);transition:all .2s}
     .badge:hover{transform:scale(1.05);background:rgba(255,255,255,.12)}
 
+    /* Butonlar */
     .btn{display:inline-block;padding:12px 16px;border-radius:12px;font-weight:800;text-decoration:none;transition:transform .25s,box-shadow .25s}
     .btn:hover{transform:translateY(-3px);box-shadow:0 6px 15px rgba(0,0,0,.3)}
     .btn.discord{background:var(--btn);color:#fff}
     .btn.shop{background:linear-gradient(90deg,var(--pri),var(--acc));color:#0b1220}
-    .btn.rules{background:#ff8f8f;color:#0b1220}
+    .btn.rules{background:var(--danger);color:#0b1220}
 
     section{scroll-margin-top:90px}
     ul{margin:0 0 0 20px}
-    footer{color:var(--muted);text-align:center;padding:28px 0}
+    footer{color:var(--muted); text-align:center; padding:28px 0}
 
     @media (max-width:720px){
       .nav{flex-wrap:wrap;gap:10px}
@@ -88,12 +128,26 @@
 </head>
 <body>
 
-  <!-- Hareketli yıldızlar -->
+  <!-- Hareketli yıldız arka plan -->
   <canvas id="bg"></canvas>
 
+  <!-- Üst menü + inline SVG logo -->
   <header>
     <div class="nav">
-      <div class="brand">NewCube<br/>Skyblock</div>
+      <a class="brand" href="index.html" aria-label="SkyHaven Network Ana Sayfa">
+        <!-- LOGO (inline SVG, kod içinde) -->
+        <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#62d0ff"/><stop offset="100%" stop-color="#7cffc4"/>
+            </linearGradient>
+          </defs>
+          <rect width="96" height="96" rx="20" fill="#0b1220"/>
+          <path d="M48 16 76 32 48 48 20 32 48 16Z" fill="url(#grad)"/>
+          <path d="M48 50 70 62 48 74 26 62 48 50Z" fill="#cfefff"/>
+        </svg>
+        <div class="brand-title">SkyHaven<small>Network</small></div>
+      </a>
       <nav>
         <a href="#ozellikler">Özellikler</a>
         <a href="#ranklar">Ranklar</a>
@@ -104,16 +158,17 @@
   </header>
 
   <main class="wrap">
+    <!-- HERO -->
     <section class="hero card">
-      <h1>Skyblock’a Hoş Geldin!</h1>
-      <p>Ekonomiyi sen yönet, adanı büyüt, minyonlarını geliştir. Türkiye’nin en emek Skyblock deneyimi burada.</p>
+      <h1>SkyHaven’a Hoş Geldin!</h1>
+      <p>Skyblock ağırlıklı, adil ve keyifli bir deneyim. Adanı büyüt, ekonomiye hükmet, etkinliklerde ödülleri kap.</p>
       <div class="badges">
-        <span class="badge">⚡ 1.20.1 Destekli</span>
+        <span class="badge">⚡ 1.20.x Destekli</span>
         <span class="badge">🛡️ Anti-Cheat</span>
         <span class="badge">💰 Dengeli Ekonomi</span>
       </div>
       <div style="margin-top:14px;background:rgba(0,0,0,.25);padding:14px;border-radius:12px">
-        <strong>Sunucu IP:</strong> play.newcube.com.tr
+        <strong>Sunucu IP:</strong> play.skyhaven.gg
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
         <a class="btn discord" href="https://discord.gg/" target="_blank" rel="noopener">Discord’a Katıl</a>
@@ -122,98 +177,97 @@
       </div>
     </section>
 
+    <!-- ÖZELLİKLER -->
     <section id="ozellikler" class="card">
-      <h2>Skyblock Özellikleri</h2>
+      <h2>SkyHaven Özellikleri</h2>
       <ul>
-        <li>Ekonomi odaklı oynanış</li>
-        <li>Boss etkinlikleri ve ödüller</li>
-        <li>Minyon geliştirme sistemi</li>
-        <li>Dengeli pazar ve anti-hile</li>
+        <li>Ekonomi odaklı Skyblock oynanışı</li>
+        <li>Görev zincirleri, kasalar ve etkinlikler</li>
+        <li>Gelişmiş minyon sistemi ve ada yükseltmeleri</li>
+        <li>Adil pazar, dupe/bug korumaları ve aktif moderasyon</li>
       </ul>
     </section>
 
+    <!-- RANKLAR -->
     <section id="ranklar" class="card">
-      <h2>Sunucu Rankları</h2>
+      <h2>Ranklar</h2>
       <ul>
-        <li><b>VIP</b> — Özel kit + <code>/repair</code> + 2x sethome</li>
-        <li><b>MVP</b> — VIP ayrıcalıkları + <code>/feed</code> + artırılmış AH limitleri</li>
-        <li><b>LEGEND</b> — Tüm komutlar + kozmetik efektler</li>
+        <li><b>VIP</b> — /repair, 2x sethome, VIP kit</li>
+        <li><b>MVP</b> — VIP + /feed, artırılmış AH limitleri</li>
+        <li><b>LEGEND</b> — Tüm ayrıcalıklar + kozmetik efektler</li>
       </ul>
       <p style="margin-top:10px"><a class="btn shop" href="magaza.html">→ Mağazaya Git</a></p>
     </section>
   </main>
 
-  <footer>© <span id="y"></span> NewCube Network — Tüm hakları saklıdır.</footer>
+  <footer>© <span id="y"></span> SkyHaven Network — Tüm hakları saklıdır.</footer>
 
   <script>
-    // Yıl
+    // Telif yılı
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Yıldız alanı
+    // Yıldız animasyonu
     const c = document.getElementById('bg');
     const ctx = c.getContext('2d', { alpha: true });
-
-    let W, H, stars = [], STAR_COUNT = 120;
+    let W, H, stars = [];
 
     function resize(){
       W = c.width  = window.innerWidth;
       H = c.height = window.innerHeight;
-      // yeniden boyutta yıldız sayısını ekran alanına göre ayarla
-      const target = Math.min(220, Math.round((W*H)/18000));
-      STAR_COUNT = target;
-      if (stars.length === 0) spawn();
+      const targetCount = Math.min(240, Math.round((W*H)/18000));
+      if (stars.length === 0) spawn(targetCount); else adjust(targetCount);
     }
-
-    function spawn(){
+    function spawn(n){
       stars = [];
-      for (let i=0;i<STAR_COUNT;i++){
+      for (let i=0;i<n;i++){
         stars.push({
           x: Math.random()*W,
           y: Math.random()*H,
-          z: Math.random()*0.8 + 0.2,    // derinlik (parallax)
-          r: Math.random()*1.2 + 0.3,     // yarıçap
-          a: Math.random()*1,             // parlaklık fazı
-          s: Math.random()*0.3 + 0.15     // hız
+          z: Math.random()*0.8 + 0.2,   // derinlik
+          r: Math.random()*1.2 + 0.3,    // yarıçap
+          a: Math.random()*1,            // parlaklık fazı
+          s: Math.random()*0.3 + 0.15    // hız
         });
       }
     }
-
+    function adjust(n){
+      while (stars.length < n) stars.push({
+        x: Math.random()*W, y: Math.random()*H, z: Math.random()*0.8+0.2,
+        r: Math.random()*1.2+0.3, a: Math.random(), s: Math.random()*0.3+0.15
+      });
+      if (stars.length > n) stars.length = n;
+    }
     function draw(){
       ctx.clearRect(0,0,W,H);
 
-      // hafif degrade parıltı
+      // hafif üst parıltı
       const grd = ctx.createRadialGradient(W*0.5, H*0.1, 0, W*0.5, H*0.1, Math.max(W,H));
       grd.addColorStop(0, "rgba(124,255,196,0.05)");
       grd.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = grd;
-      ctx.fillRect(0,0,W,H);
+      ctx.fillStyle = grd; ctx.fillRect(0,0,W,H);
 
-      // yıldızlar
       for (const st of stars){
-        st.x += st.s * st.z;         // sağa çok hafif kayar
-        if (st.x > W+5) st.x = -5;   // sonsuz döngü
-        st.a += 0.02 + st.z*0.02;    // titreme fazı
+        st.x += st.s * st.z;            // hafif sağa kayma
+        if (st.x > W+5) st.x = -5;      // döngü
+        st.a += 0.02 + st.z*0.02;       // titreme fazı
 
-        const twinkle = 0.6 + Math.sin(st.a)*0.4; // 0.2–1.0
-        ctx.globalAlpha = twinkle;
+        const tw = 0.6 + Math.sin(st.a)*0.4; // 0.2–1.0
+        ctx.globalAlpha = tw;
 
-        // parıltı halkası
+        // parıltı
         ctx.beginPath();
         ctx.arc(st.x, st.y, st.r*2.2, 0, Math.PI*2);
-        ctx.fillStyle = "rgba(98,208,255,0.18)";
-        ctx.fill();
+        ctx.fillStyle = "rgba(98,208,255,0.18)"; ctx.fill();
 
         // çekirdek
         ctx.beginPath();
         ctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
-        ctx.fillStyle = "#e9f1ff";
-        ctx.fill();
+        ctx.fillStyle = "#e9f1ff"; ctx.fill();
       }
       ctx.globalAlpha = 1;
       requestAnimationFrame(draw);
     }
-
-    window.addEventListener('resize', ()=>{resize(); spawn();});
+    window.addEventListener('resize', resize);
     resize(); draw();
   </script>
 </body>
