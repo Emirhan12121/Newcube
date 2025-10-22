@@ -1,120 +1,220 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NewCube Skyblock — Resmi Sunucu Sitesi</title>
-  <meta name="description" content="NewCube Skyblock sunucusunun resmi sitesi. IP kopyala, Discord'a katıl, mağazadan destek ol ve kuralları öğren.">
+  <title>NewCube Skyblock – Resmi Site</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: #0b1220;
-      color: #e9f1ff;
+    :root{
+      --bg:#0b1220;
+      --panel:#101a2f;
+      --text:#e9f1ff;
+      --muted:#9fb2d9;
+      --pri:#62d0ff; --acc:#7cffc4; --btn:#6b7bff;
     }
-    header {
-      background: #111a2e;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Poppins,system-ui,Segoe UI,Roboto,Arial;
+      color:var(--text); background:var(--bg); line-height:1.6; overflow-x:hidden;
     }
-    header h1 {
-      font-size: 20px;
-      background: linear-gradient(90deg,#62d0ff,#7cffc4);
-      -webkit-background-clip: text;
-      color: transparent;
+
+    /* tam ekran yıldız kanvası */
+    #bg{
+      position:fixed; inset:0; width:100%; height:100vh;
+      z-index:-1; background:radial-gradient(1200px 500px at 50% -200px, #13223f 0%, #0b1220 55%);
     }
-    nav a {
-      color: #9fb2d9;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: 600;
+
+    /* fade-in */
+    @keyframes fadeIn { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
+
+    /* Üst menü */
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(6px);
+      background:rgba(15,22,42,.88);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      animation:fadeIn 1s ease;
     }
-    nav a:hover { color: white; }
-    .container { max-width: 1000px; margin: 20px auto; padding: 20px; }
-    .card {
-      background: #111a2eaa;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
+    .nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px}
+    .brand{
+      font-weight:800; font-size:22px; line-height:1;
+      background:linear-gradient(90deg,var(--pri),var(--acc));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      transition:transform .3s ease;
     }
-    .btn {
-      display: inline-block;
-      margin: 5px;
-      padding: 10px 15px;
-      border-radius: 10px;
-      font-weight: bold;
-      text-decoration: none;
+    .brand:hover{transform:scale(1.05)}
+    nav a{
+      color:var(--muted); text-decoration:none; font-weight:600; margin-left:16px; position:relative; transition:color .3s ease;
     }
-    .btn.discord { background: #5865f2; color: white; }
-    .btn.shop { background: #7cffc4; color: #111a2e; }
-    .btn.rules { background: #ff6b6b; color: white; }
-    footer {
-      text-align: center;
-      padding: 15px;
-      color: #9fb2d9;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      margin-top: 30px;
+    nav a::after{
+      content:""; position:absolute; left:0; bottom:-4px; width:0; height:2px;
+      background:linear-gradient(90deg,var(--pri),var(--acc)); transition:width .3s ease;
+    }
+    nav a:hover{color:#fff} nav a:hover::after{width:100%}
+
+    .wrap{max-width:1100px;margin:18px auto;padding:0 18px}
+    .card{
+      background:rgba(16,26,47,.9);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:16px; padding:20px; box-shadow:0 10px 25px rgba(0,0,0,.15);
+      margin-bottom:22px; animation:fadeIn 1.2s ease;
+    }
+    h1,h2{margin:0 0 14px} h1{font-size:34px} h2{font-size:28px}
+    .hero{padding:26px;border-radius:18px;animation:fadeIn 1s ease}
+    .hero h1{font-size:34px;margin-bottom:10px;background:linear-gradient(90deg,#fff,#cfe9ff);-webkit-background-clip:text;color:transparent}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 4px}
+    .badge{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#d6e6ff;padding:6px 10px;border-radius:10px;font-weight:600;font-size:13px;transform:scale(.95);transition:all .2s}
+    .badge:hover{transform:scale(1.05);background:rgba(255,255,255,.12)}
+
+    .btn{display:inline-block;padding:12px 16px;border-radius:12px;font-weight:800;text-decoration:none;transition:transform .25s,box-shadow .25s}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 6px 15px rgba(0,0,0,.3)}
+    .btn.discord{background:var(--btn);color:#fff}
+    .btn.shop{background:linear-gradient(90deg,var(--pri),var(--acc));color:#0b1220}
+    .btn.rules{background:#ff8f8f;color:#0b1220}
+
+    section{scroll-margin-top:90px}
+    ul{margin:0 0 0 20px}
+    footer{color:var(--muted);text-align:center;padding:28px 0}
+
+    @media (max-width:720px){
+      .nav{flex-wrap:wrap;gap:10px}
+      nav{width:100%;display:flex;flex-wrap:wrap;gap:12px}
+      nav a{margin:0 12px 0 0}
+      h1{font-size:28px} h2{font-size:24px}
     }
   </style>
 </head>
 <body>
-<!-- RANKLAR -->
-<section id="ranklar" class="card">
-  <h2>Sunucu Rankları</h2>
-  <ul>
-    <li><b>VIP</b> – Özel kit + /repair</li>
-    <li><b>MVP</b> – VIP ayrıcalıkları + /feed</li>
-    <li><b>LEGEND</b> – Tüm komutlar + efektler</li>
-  </ul>
-</section>
-  
-<header>
-  <h1>NewCube Skyblock</h1>
-  <nav>
-    <a href="#ozellikler">Özellikler</a>
-    <a href="#ranklar">Ranklar</a>
-    <a href="#kurallar">Kurallar</a>
-    <a href="#ekip">Ekip</a>
-  </nav>
-</header>
-<div class="container">
-  <div class="card">
-    <h2>Skyblock’a Hoş Geldin!</h2>
-    <p>Ekonomiyi sen yönlendir, adanı büyüt, minyonlarını geliştir. Türkiye’nin en emek Skyblock deneyimi burada.</p>
-    <p><b>Sunucu IP:</b> play.newcube.com.tr</p>
-    <a class="btn discord" href="https://discord.gg/" target="_blank">Discord’a Katıl</a>
-    <a class="btn shop" href="magaza.html">Mağaza</a>
-    <a class="btn rules" href="rules.html">Kuralları Oku</a>
-  </div>
-  <div class="card">
-    <h3>Yeni Sezon Başladı!</h3>
-    <ul>
-      <li>Ada görevleri & aşamalı ödüller</li>
-      <li>Boss etkinlikleri ve kasalar</li>
-      <li>Dengeli ekonomi & liderlik tablosu</li>
-    </ul>
-  </div>
-</div>
-<footer>
-  © 2025 NewCube Network — Tüm hakları saklıdır.
-</footer>
-</body> <header>
-  <h1>NewCube Skyblock</h1>
-  <nav>
-    <a href="#ozellikler">Özellikler</a>
-    <a href="#ranklar">Ranklar</a>
-    <a href="kurallar.html">Kurallar</a>
-    <a href="ekip.html">Ekip</a>
-  </nav>
-</header>
-  <nav>
-  <a href="#ozellikler">Özellikler</a>
-  <a href="#ranklar">Ranklar</a>
-  <a href="kurallar.html">Kurallar</a>
-  <a href="ekip.html">Ekip</a>
-</nav>
+
+  <!-- Hareketli yıldızlar -->
+  <canvas id="bg"></canvas>
+
+  <header>
+    <div class="nav">
+      <div class="brand">NewCube<br/>Skyblock</div>
+      <nav>
+        <a href="#ozellikler">Özellikler</a>
+        <a href="#ranklar">Ranklar</a>
+        <a href="kurallar.html">Kurallar</a>
+        <a href="ekip.html">Ekip</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero card">
+      <h1>Skyblock’a Hoş Geldin!</h1>
+      <p>Ekonomiyi sen yönet, adanı büyüt, minyonlarını geliştir. Türkiye’nin en emek Skyblock deneyimi burada.</p>
+      <div class="badges">
+        <span class="badge">⚡ 1.20.1 Destekli</span>
+        <span class="badge">🛡️ Anti-Cheat</span>
+        <span class="badge">💰 Dengeli Ekonomi</span>
+      </div>
+      <div style="margin-top:14px;background:rgba(0,0,0,.25);padding:14px;border-radius:12px">
+        <strong>Sunucu IP:</strong> play.newcube.com.tr
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+        <a class="btn discord" href="https://discord.gg/" target="_blank" rel="noopener">Discord’a Katıl</a>
+        <a class="btn shop" href="magaza.html">Mağaza</a>
+        <a class="btn rules" href="kurallar.html">Kuralları Oku</a>
+      </div>
+    </section>
+
+    <section id="ozellikler" class="card">
+      <h2>Skyblock Özellikleri</h2>
+      <ul>
+        <li>Ekonomi odaklı oynanış</li>
+        <li>Boss etkinlikleri ve ödüller</li>
+        <li>Minyon geliştirme sistemi</li>
+        <li>Dengeli pazar ve anti-hile</li>
+      </ul>
+    </section>
+
+    <section id="ranklar" class="card">
+      <h2>Sunucu Rankları</h2>
+      <ul>
+        <li><b>VIP</b> — Özel kit + <code>/repair</code> + 2x sethome</li>
+        <li><b>MVP</b> — VIP ayrıcalıkları + <code>/feed</code> + artırılmış AH limitleri</li>
+        <li><b>LEGEND</b> — Tüm komutlar + kozmetik efektler</li>
+      </ul>
+      <p style="margin-top:10px"><a class="btn shop" href="magaza.html">→ Mağazaya Git</a></p>
+    </section>
+  </main>
+
+  <footer>© <span id="y"></span> NewCube Network — Tüm hakları saklıdır.</footer>
+
+  <script>
+    // Yıl
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Yıldız alanı
+    const c = document.getElementById('bg');
+    const ctx = c.getContext('2d', { alpha: true });
+
+    let W, H, stars = [], STAR_COUNT = 120;
+
+    function resize(){
+      W = c.width  = window.innerWidth;
+      H = c.height = window.innerHeight;
+      // yeniden boyutta yıldız sayısını ekran alanına göre ayarla
+      const target = Math.min(220, Math.round((W*H)/18000));
+      STAR_COUNT = target;
+      if (stars.length === 0) spawn();
+    }
+
+    function spawn(){
+      stars = [];
+      for (let i=0;i<STAR_COUNT;i++){
+        stars.push({
+          x: Math.random()*W,
+          y: Math.random()*H,
+          z: Math.random()*0.8 + 0.2,    // derinlik (parallax)
+          r: Math.random()*1.2 + 0.3,     // yarıçap
+          a: Math.random()*1,             // parlaklık fazı
+          s: Math.random()*0.3 + 0.15     // hız
+        });
+      }
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+
+      // hafif degrade parıltı
+      const grd = ctx.createRadialGradient(W*0.5, H*0.1, 0, W*0.5, H*0.1, Math.max(W,H));
+      grd.addColorStop(0, "rgba(124,255,196,0.05)");
+      grd.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = grd;
+      ctx.fillRect(0,0,W,H);
+
+      // yıldızlar
+      for (const st of stars){
+        st.x += st.s * st.z;         // sağa çok hafif kayar
+        if (st.x > W+5) st.x = -5;   // sonsuz döngü
+        st.a += 0.02 + st.z*0.02;    // titreme fazı
+
+        const twinkle = 0.6 + Math.sin(st.a)*0.4; // 0.2–1.0
+        ctx.globalAlpha = twinkle;
+
+        // parıltı halkası
+        ctx.beginPath();
+        ctx.arc(st.x, st.y, st.r*2.2, 0, Math.PI*2);
+        ctx.fillStyle = "rgba(98,208,255,0.18)";
+        ctx.fill();
+
+        // çekirdek
+        ctx.beginPath();
+        ctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
+        ctx.fillStyle = "#e9f1ff";
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', ()=>{resize(); spawn();});
+    resize(); draw();
+  </script>
+</body>
 </html>
