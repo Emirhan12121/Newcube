@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkyHaven Mağaza</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0f1a; --panel:#0f1726; --text:#e9f0ff; --muted:#9fb1d6;
+  --accent:#61e1c2; --accent2:#4db8ff; --stroke:rgba(255,255,255,.08); --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0} body{background:radial-gradient(900px 600px at 90% -10%,#163d6a33,transparent 70%),var(--bg);color:var(--text);font-family:Inter,sans-serif}
+.container{width:min(1200px,94%);margin:24px auto}
+header{position:sticky;top:12px;z-index:20;background:rgba(255,255,255,.03);backdrop-filter:blur(12px);
+  border:1px solid var(--stroke);border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.logo img{width:34px;height:34px;object-fit:contain}
+.logo b{font:800 18px/1 Inter}
+.header-actions{margin-left:auto;display:flex;gap:10px}
+.btn{padding:10px 14px;border-radius:12px;border:1px solid var(--stroke);text-decoration:none;color:var(--text);font-weight:700}
+.btn.primary{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#07201f}
+.title{margin:22px 4px 10px}
+.title h1{font:800 clamp(24px,3.8vw,38px)/1.2 Inter}
+.title p{color:var(--muted);margin-top:6px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));margin-top:18px}
+.card{background:rgba(255,255,255,.04);border:1px solid var(--stroke);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-weight:800}
+.badge span{padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--stroke)}
+.price{font:800 22px/1 Inter;margin-top:2px}
+.features{color:var(--muted);font-size:14px;line-height:1.6}
+.qty{display:flex;align-items:center;gap:8px;margin-top:6px}
+.qty input{width:64px;padding:8px;border-radius:10px;border:1px solid var(--stroke);background:rgba(255,255,255,.06);color:var(--text);text-align:center}
+.buy{margin-top:auto;display:flex;flex-direction:column;gap:8px}
+.total{font-weight:800;color:var(--accent)}
+.link{color:var(--accent2);text-decoration:none}
+hr.sep{border:none;height:1px;background:var(--stroke);margin:24px 0}
+.footer{color:var(--muted);text-align:center;margin:24px 0}
+
+/* Modal */
+.modalbg{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.55);z-index:50;padding:16px}
+.modal{width:min(520px,96%);background:rgba(255,255,255,.05);border:1px solid var(--stroke);border-radius:16px;padding:18px}
+.modal h3{font:800 20px/1.2 Inter;margin-bottom:6px}
+.modal p{color:var(--muted)}
+.methods{display:grid;gap:10px;margin-top:12px}
+.method{display:flex;justify-content:space-between;align-items:center;padding:12px;border:1px solid var(--stroke);border-radius:12px;background:rgba(255,255,255,.04)}
+.method b{font-weight:800}
+.method a{padding:8px 12px;border-radius:10px;border:1px solid var(--stroke);text-decoration:none;color:var(--text)}
+.method a.go{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#06221e;border:none}
+.small{font-size:13px;color:var(--muted)}
+.close{margin-top:12px;text-align:right}
+.close button{background:transparent;border:1px solid var(--stroke);color:var(--text);padding:8px 12px;border-radius:10px;cursor:pointer}
+.note{background:rgba(255,255,255,.04);border:1px solid var(--stroke);border-radius:12px;padding:10px;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a class="logo" href="index.html">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Minecraft_logo.svg" alt="mc">
+      <b>SkyHaven <span style="color:var(--accent)">Mağaza</span></b>
+    </a>
+    <div class="header-actions">
+      <a class="btn" href="index.html">Ana sayfa</a>
+      <a class="btn primary" href="#vip">Rütbeler</a>
+    </div>
+  </header>
+
+  <div class="title">
+    <h1>Rütbeler & Anahtarlar</h1>
+    <p>Satın almadan önce <a class="link" href="index.html#kurallar">kuralları</a> okuyun. Tüm satışlar **TRY** (₺) üzerindendir.</p>
+  </div>
+
+  <!-- RANKS -->
+  <h2 id="vip" class="title" style="font:800 18px/1 Inter;">Rütbeler</h2>
+  <div class="grid" id="rankGrid">
+    <div class="card" data-sku="VIP" data-name="VIP" data-price="79">
+      <div class="badge"><span>VIP</span></div>
+      <div class="price">₺79</div>
+      <div class="features">
+        • /repair, 2× sethome, özel kit<br>
+        • Kuyruk önceliği, kozmetik etki
+      </div>
+      <div class="qty">
+        Adet:
+        <input type="number" min="1" value="1" class="qtyInput">
+      </div>
+      <div class="buy">
+        <div class="total">Toplam: <span class="totalPrice">₺79</span></div>
+        <a href="#" class="btn primary payBtn">Satın Al</a>
+        <span class="small">Mevcut hesabın üzerine tanımlanır. Kullanıcı adınızı ödemede yazın.</span>
+      </div>
+    </div>
+
+    <div class="card" data-sku="MVP" data-name="MVP" data-price="129">
+      <div class="badge"><span>MVP</span></div>
+      <div class="price">₺129</div>
+      <div class="features">
+        • VIP + /feed, artırılmış AH limitleri<br>
+        • Market komisyon indirimi
+      </div>
+      <div class="qty">Adet: <input type="number" min="1" value="1" class="qtyInput"></div>
+      <div class="buy"><div class="total">Toplam: <span class="totalPrice">₺129</span></div>
+        <a href="#" class="btn primary payBtn">Satın Al</a>
+        <span class="small">Kullanıcı adını belirtmeyi unutma.</span>
+      </div>
+    </div>
+
+    <div class="card" data-sku="LEGEND" data-name="LEGEND" data-price="199">
+      <div class="badge"><span>LEGEND</span></div>
+      <div class="price">₺199</div>
+      <div class="features">
+        • Tüm ayrıcalıklar + efektler<br>
+        • Özel kozmetikler ve simge
+      </div>
+      <div class="qty">Adet: <input type="number" min="1" value="1" class="qtyInput"></div>
+      <div class="buy"><div class="total">Toplam: <span class="totalPrice">₺199</span></div>
+        <a href="#" class="btn primary payBtn">Satın Al</a>
+        <span class="small">Anında/elle teslimat (maks. 24 saat).</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- KEYS -->
+  <h2 class="title" style="font:800 18px/1 Inter;">Sandık Anahtarları</h2>
+  <div class="grid">
+    <div class="card" data-sku="CRATE1" data-name="Sandık Anahtarı x1" data-price="15">
+      <div class="badge"><span>Kasa Anahtarı</span></div>
+      <div class="price">₺15</div>
+      <div class="features">Rastgele ödüller. /warp crates</div>
+      <div class="qty">Adet: <input type="number" min="1" value="1" class="qtyInput"></div>
+      <div class="buy"><div class="total">Toplam: <span class="totalPrice">₺15</span></div>
+        <a href="#" class="btn primary payBtn">Satın Al</a></div>
+    </div>
+
+    <div class="card" data-sku="CRATE5" data-name="Sandık Anahtarı x5" data-price="69">
+      <div class="badge"><span>Kasa Anahtarı</span></div>
+      <div class="price">₺69</div>
+      <div class="features">Paket indirimli set (5 adet)</div>
+      <div class="qty">Adet: <input type="number" min="1" value="1" class="qtyInput"></div>
+      <div class="buy"><div class="total">Toplam: <span class="totalPrice">₺69</span></div>
+        <a href="#" class="btn primary payBtn">Satın Al</a></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>Not:</b> Bu sayfa bir örnek ödeme akışıdır. Gerçek tahsilat için Shopier/iyzico/Stripe gibi bir sağlayıcıya yönlendiriyoruz.
+    Bu sağlayıcılarda açtığın ürün linklerini aşağıdaki alanlara eklemen yeterli.
+  </div>
+
+  <div class="footer">© 2025 SkyHaven Network • Sorular için Discord: <a class="link" href="https://discord.gg/yourInvite" target="_blank">discord.gg/yourInvite</a></div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modalbg" id="checkout">
+  <div class="modal">
+    <h3 id="coTitle">Satın Alma</h3>
+    <p id="coDesc" class="small">Ürün ve adet onayından sonra ödeme yöntemini seçin.</p>
+
+    <div class="methods">
+      <!-- Shopier -->
+      <div class="method">
+        <div>
+          <b>Shopier</b><div class="small">Kredi/Banka kartı ile güvenli ödeme</div>
+        </div>
+        <a id="shopierLink" class="go" target="_blank" rel="noopener">Öde</a>
+      </div>
+
+      <!-- Stripe -->
+      <div class="method">
+        <div>
+          <b>Stripe</b><div class="small">Uluslararası kartlar için yönlendirme</div>
+        </div>
+        <a id="stripeLink" class="go" target="_blank" rel="noopener">Öde</a>
+      </div>
+
+      <!-- Havale / IBAN -->
+      <div class="method">
+        <div>
+          <b>Havale / IBAN</b>
+          <div class="small">Açıklamaya <u>oyuncu adını</u> yazmayı unutma.</div>
+        </div>
+        <a id="ibanCopy" href="#" class="">IBAN Kopyala</a>
+      </div>
+
+      <!-- Discord Destek -->
+      <div class="method">
+        <div>
+          <b>Destek Talebi</b>
+          <div class="small">Soru/itirafta Discord ticket aç.</div>
+        </div>
+        <a href="https://discord.gg/yourInvite" class="" target="_blank">Aç</a>
+      </div>
+    </div>
+
+    <div class="note small">
+      Satın alma sonrası rütbe/anahtarlar hesabına tanımlanır. 10 dakika içinde gelmezse lütfen ticket aç.
+    </div>
+    <div class="close"><button id="closeCo">Kapat</button></div>
+  </div>
+</div>
+
+<script>
+/* ====== Ürün toplam hesaplama ====== */
+const money = amt => "₺"+Number(amt).toLocaleString("tr-TR");
+
+document.querySelectorAll(".card").forEach(card=>{
+  const price = Number(card.dataset.price);
+  const qtyInput = card.querySelector(".qtyInput");
+  const totalSpan = card.querySelector(".totalPrice");
+  const update = ()=> totalSpan.textContent = money(price * Math.max(1, Number(qtyInput.value||1)));
+  qtyInput.addEventListener("input", update);
+  update();
+});
+
+/* ====== Ödeme modalı ====== */
+const modal = document.getElementById("checkout");
+const closeCo = document.getElementById("closeCo");
+closeCo.onclick = ()=> modal.style.display="none";
+window.addEventListener("keydown",e=>{ if(e.key==="Escape") modal.style.display="none"; });
+
+let selected = { sku:"", name:"", qty:1, price:0, total:0 };
+
+document.querySelectorAll(".payBtn").forEach(btn=>{
+  btn.addEventListener("click", e=>{
+    e.preventDefault();
+    const card = e.target.closest(".card");
+    selected.name = card.dataset.name;
+    selected.sku  = card.dataset.sku;
+    selected.price= Number(card.dataset.price);
+    selected.qty  = Math.max(1, Number(card.querySelector(".qtyInput").value||1));
+    selected.total= selected.price * selected.qty;
+
+    // Başlık & açıklama
+    document.getElementById("coTitle").textContent = `${selected.name} — ${selected.qty} adet (${money(selected.total)})`;
+    document.getElementById("coDesc").textContent  = `Ürün: ${selected.name} • SKU: ${selected.sku} • Adet: ${selected.qty} • Tutar: ${money(selected.total)}`;
+
+    // Ödeme linklerini doldur (KENDİ linklerinle değiştir)
+    // Shopier ürün linki (örnek parametreler)
+    const shopierBase = "https://www.shopier.com/ShowProductNew.php";
+    const shopierParams = new URLSearchParams({
+      id: "YOUR_SHOPIER_PRODUCT_ID",    // <-- Shopier ürün ID
+      sku: selected.sku,
+      name: selected.name,
+      qty: selected.qty,
+      amount: selected.total
+    });
+    document.getElementById("shopierLink").href = shopierBase + "?" + shopierParams.toString();
+
+    // Stripe Payment Link (kendi oluşturduğun link + quantity param.)
+    const stripeBase = "https://buy.stripe.com/test_XXXXXXXX"; // <-- Stripe Payment Link
+    document.getElementById("stripeLink").href = `${stripeBase}?quantity=${selected.qty}`;
+
+    // IBAN kopyalama
+    document.getElementById("ibanCopy").onclick = (ev)=>{
+      ev.preventDefault();
+      const iban = "TR00 0000 0000 0000 0000 0000 00"; // <-- kendi IBAN
+      navigator.clipboard.writeText(iban).then(()=>alert("IBAN kopyalandı: "+iban+"\nAçıklama: "+selected.name+" • "+selected.qty+" adet • OyuncuAdı"));
+    };
+
+    modal.style.display="grid";
+  });
+});
+
+/* Basit yönlendirmeler */
+document.getElementById("rankGrid")?.scrollIntoView({block:"start",behavior:"smooth"});
+</script>
+</body>
+</html>
