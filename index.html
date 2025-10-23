@@ -1,177 +1,335 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SkyHaven Network</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Russo+One&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SkyHaven Network — Resmî Site</title>
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  --bg:#0a0f1a;
-  --panel:#0f1726;
-  --text:#e8eefc;
-  --muted:#9fb1d6;
-  --accent:#61e1c2;
-  --accent2:#4db8ff;
-  --stroke:rgba(255,255,255,.08);
-  --radius:18px;
-  --shadow:0 10px 40px rgba(0,0,0,.45);
+  --bg:#0a1220;
+  --panel:#0f1a2a;
+  --panel-soft:rgba(15,26,42,.72);
+  --txt:#eaf2ff;
+  --muted:#9fb6d1;
+  --em:#79f2c0;
+  --em2:#62d0ff;
+  --btn:#6b7bff;
+  --danger:#ff8f8f;
+  --border:rgba(255,255,255,.08);
+  --shadow:0 10px 30px rgba(0,0,0,.45);
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  background:radial-gradient(800px 500px at 80% 10%,#15326055,transparent 70%),
-             radial-gradient(800px 500px at 0% 100%,#0aa0ff22,transparent 70%),var(--bg);
-  font-family:Inter,sans-serif;color:var(--text);overflow-x:hidden;
-}
-header{
-  position:fixed;top:16px;left:16px;right:16px;z-index:20;
-  display:flex;align-items:center;gap:20px;padding:10px 18px;
-  background:rgba(255,255,255,.03);border:1px solid var(--stroke);
-  border-radius:14px;backdrop-filter:blur(12px);box-shadow:var(--shadow);
-}
-header img{width:38px;height:38px;object-fit:contain;border-radius:8px;}
-.brand{font:800 18px/1 Inter;text-decoration:none;color:var(--text);}
-.nav{margin-left:auto;display:flex;gap:14px;align-items:center;}
-.nav a{color:var(--text);text-decoration:none;font-weight:600;opacity:.9}
-.nav a:hover{opacity:1}
-.btn{
-  padding:10px 16px;border-radius:12px;font-weight:800;text-decoration:none;
-  border:1px solid var(--stroke);white-space:nowrap;
-}
-.btn.main{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#04161b}
-.btn.ghost{background:rgba(255,255,255,.05);color:var(--text);}
-.hero{padding:130px 16px 40px;text-align:center;}
-.hero h1{font:800 clamp(28px,5vw,44px)/1.2 Inter;margin-bottom:10px;}
-.hero p{color:var(--muted);max-width:700px;margin:0 auto 20px;line-height:1.7}
-.ipbox{display:inline-flex;align-items:center;gap:8px;
-  padding:10px 14px;border-radius:10px;border:1px solid var(--stroke);
-  background:rgba(255,255,255,.05);margin-bottom:18px;}
-.copy{padding:6px 10px;background:rgba(255,255,255,.08);border-radius:8px;cursor:pointer;}
-.sections{width:min(1100px,96%);margin:auto;display:grid;gap:20px;}
-.card{padding:22px;border:1px solid var(--stroke);border-radius:var(--radius);
-  background:rgba(255,255,255,.04);backdrop-filter:blur(10px);}
-.card h2{font:800 20px/1.3 Inter;margin-bottom:8px;}
-.card ul{margin-left:20px;}
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
 
-/* modal */
-.modalbg{position:fixed;inset:0;display:none;place-items:center;
-background:rgba(0,0,0,.5);z-index:50;}
-.modal{width:min(450px,92%);background:rgba(255,255,255,.05);backdrop-filter:blur(14px);
-border:1px solid var(--stroke);border-radius:16px;padding:20px;}
-.modal h2{margin-bottom:10px;}
-.input{width:100%;padding:10px 14px;margin:5px 0 10px;border-radius:10px;
-border:1px solid var(--stroke);background:rgba(255,255,255,.07);color:var(--text);}
-.actions{display:flex;justify-content:end;gap:10px;margin-top:6px;}
-.small{font-size:13px;color:var(--muted)}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(800px 500px at 10% -10%, rgba(98,208,255,.12), transparent 60%),
+    radial-gradient(900px 600px at 110% 0%, rgba(121,242,192,.10), transparent 60%),
+    var(--bg);
+  color:var(--txt);
+  font:16px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* ---------- Header ---------- */
+.header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(1.1) blur(10px);
+  background:linear-gradient(180deg, rgba(10,18,32,.9), rgba(10,18,32,.6));
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  max-width:1100px; margin:auto; padding:10px 16px;
+  display:flex; align-items:center; gap:16px;
+}
+
+/* Logo */
+.logo{
+  display:flex; align-items:center; gap:10px; text-decoration:none;
+}
+.logo-mark{
+  width:34px; height:34px; border-radius:10px;
+  background:linear-gradient(135deg, var(--em2), var(--em));
+  display:grid; place-items:center;
+  box-shadow:0 6px 16px rgba(98,208,255,.25);
+}
+.logo-mark svg{width:20px; height:20px; fill:#0a1220}
+.logo-text{font-weight:800; letter-spacing:.2px}
+.logo-text span{color:var(--em)}
+
+/* Nav */
+.nav{
+  display:flex; align-items:center; gap:18px;
+  margin-left:auto; /* masaüstünde sağa yasla, butonlar en sağda */
+}
+.nav a{
+  color:var(--muted); text-decoration:none; font-weight:600;
+}
+.nav a:hover{color:var(--txt)}
+.actions{display:flex; gap:10px}
+.btn{
+  appearance:none; border:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  color:var(--txt); padding:10px 16px; border-radius:12px; font-weight:700;
+  box-shadow:var(--shadow); cursor:pointer;
+}
+.btn.em{
+  border-color:transparent;
+  background:linear-gradient(90deg, var(--em2), var(--em));
+  color:#0b1424;
+}
+.btn.small{padding:8px 12px; border-radius:10px; font-weight:700; font-size:14px}
+
+/* Hamburger (mobil) */
+.hamb{display:none; margin-left:auto}
+.hamb button{
+  width:42px; height:42px; border-radius:10px; border:1px solid var(--border);
+  background:rgba(255,255,255,.04); color:var(--txt)
+}
+
+/* ---------- Drawer ---------- */
+.drawer{position:fixed; inset:0; display:none}
+.drawer.open{display:block}
+.drawer .backdrop{
+  position:absolute; inset:0; background:rgba(0,0,0,.5);
+}
+.drawer .panel{
+  position:absolute; top:0; right:0; width:min(88vw,380px); height:100%;
+  background:linear-gradient(180deg, rgba(15,26,42,.96), rgba(15,26,42,.92));
+  border-left:1px solid var(--border);
+  box-shadow:var(--shadow);
+  padding:18px;
+  display:flex; flex-direction:column; gap:16px;
+}
+.drawer .row{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+}
+.drawer h3{margin:0; font-weight:800}
+.drawer .list{
+  display:grid; gap:10px; margin-top:4px;
+}
+.link{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px; border-radius:10px; text-decoration:none;
+  color:var(--txt); border:1px solid var(--border);
+  background:rgba(255,255,255,.03);
+}
+.link:hover{background:rgba(255,255,255,.06)}
+.badge{
+  padding:4px 8px; border-radius:999px; font-size:12px; font-weight:700;
+  background:rgba(121,242,192,.1); color:var(--em);
+}
+
+/* ---------- Hero ---------- */
+.container{max-width:1100px; margin:auto; padding:28px 16px}
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid var(--border); border-radius:18px; padding:22px;
+  box-shadow:var(--shadow);
+}
+.hero h1{
+  font-size: clamp(28px, 3.8vw, 44px);
+  line-height:1.2; margin:10px 0 8px; letter-spacing:.2px;
+}
+.hero p{color:var(--muted); max-width:720px; margin:0 0 18px}
+.ip{
+  display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+  background:rgba(255,255,255,.03); border:1px solid var(--border);
+  border-radius:14px; padding:10px 12px; width:fit-content;
+}
+.ip code{font-weight:800; letter-spacing:.5px}
+.row{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
+
+/* ---------- Sections ---------- */
+.section{margin-top:26px}
+.section h2{margin:0 0 10px; font-size:24px}
+.list{margin:8px 0 0 0; padding-left:18px; color:var(--muted)}
+.note{color:var(--muted); font-size:14px}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px){
+  .nav-core{display:none}          /* menü gizle */
+  .hamb{display:block}             /* hamburger göster */
+  .actions{display:none}           /* sağdaki giriş/kayıt gizle (drawer’a taşınıyor) */
+}
 </style>
 </head>
 <body>
-<header>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Minecraft_logo.svg" alt="logo">
-  <a class="brand" href="#">SkyHaven <span style="color:var(--accent)">Network</span></a>
-  <nav class="nav">
-    <a href="#ozellikler">Özellikler</a>
-    <a href="#rutbeler">Rütbeler</a>
-    <a href="#kurallar">Kurallar</a>
-    <a href="#rehber">Rehber</a>
-    <a href="#ekip">Ekip</a>
-    <a href="#" id="store">Mağaza</a>
-    <a class="btn ghost" href="#" id="loginBtn">Giriş</a>
-    <a class="btn main" href="#" id="registerBtn">Kayıt</a>
-  </nav>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-inner">
+    <!-- Logo -->
+    <a href="#" class="logo" aria-label="SkyHaven Network">
+      <span class="logo-mark" aria-hidden="true">
+        <!-- sade “SH” monogram -->
+        <svg viewBox="0 0 24 24"><path d="M4 5h7v4H8v6h3v4H4V5zm9 0h7v13h-7v-4h4V9h-4V5z"/></svg>
+      </span>
+      <span class="logo-text">SkyHaven <span>Network</span></span>
+    </a>
+
+    <!-- Orta menü (masaüstü) -->
+    <nav class="nav nav-core" aria-label="Birincil">
+      <a href="#ozellikler">Özellikler</a>
+      <a href="#rutbeler">Rütbeler</a>
+      <a href="#kurallar">Kurallar</a>
+      <a href="#rehber">Rehber</a>
+      <a href="#ekip">Ekip</a>
+      <a href="#magaza">Mağaza</a>
+    </nav>
+
+    <!-- Sağ aksiyonlar (masaüstü) -->
+    <div class="actions">
+      <button class="btn small" data-open="login">Giriş</button>
+      <button class="btn small em" data-open="register">Kayıt</button>
+    </div>
+
+    <!-- Hamburger (mobil) -->
+    <div class="hamb">
+      <button id="btnDrawer" aria-label="Menüyü aç">☰</button>
+    </div>
+  </div>
 </header>
 
-<section class="hero">
-  <h1>Profesyonel Minecraft Deneyimi</h1>
-  <p>Adil ekonomi, güvenli altyapı, gelişmiş sistemler. SkyHaven Network’te eğlence, ticaret ve rekabet bir arada.</p>
-  <div class="ipbox"><b>IP:</b> <span id="ip">play.skyhaven.gg</span><span class="copy" id="copyIp">Kopyala</span></div><br>
-  <a class="btn main" href="#" id="joinGuide">Nasıl Giriş Yapılır?</a>
-</section>
+<!-- Drawer (mobile / ayrıca masaüstünde de çalışır) -->
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="backdrop" id="drawerBackdrop"></div>
+  <div class="panel" role="dialog" aria-modal="true" aria-label="Gezinti">
+    <div class="row">
+      <h3>Menü</h3>
+      <button class="btn small" id="drawerClose">Kapat</button>
+    </div>
 
-<section class="sections" id="ozellikler">
-  <div class="card">
+    <div class="list">
+      <a class="link" href="#">🏠 Ev</a>
+      <a class="link" href="#magaza">💰 Mağaza</a>
+      <a class="link" href="#kredi">💳 Kredi Yükle</a>
+      <a class="link" href="#siralama">🏆 Sıralamalar</a>
+      <a class="link" href="#oy">⭐ Oy Ver</a>
+      <a class="link" href="#viki">📘 Viki</a>
+      <a class="link" href="#yardim">🧭 Yardım</a>
+      <a class="link" href="#destek">🎧 Destek</a>
+      <a class="link" href="#profil">👤 Profil</a>
+      <div class="link">💵 Bakiye: <span class="badge">0.00 Kredi</span></div>
+      <a class="link" href="#sepet">🛒 Sepet (0)</a>
+      <a class="link" href="#goğus">🎁 Göğüs</a>
+      <a class="link" href="#hediye">🎉 Hediye</a>
+      <hr style="border:0;border-top:1px solid var(--border);margin:8px 0">
+      <button class="btn">Giriş</button>
+      <button class="btn em">Kayıt</button>
+      <button class="btn" style="background:rgba(255,255,255,.05);border-color:var(--danger);color:#ffdede">Çıkış yap</button>
+    </div>
+  </div>
+</aside>
+
+<!-- Hero -->
+<main class="container">
+  <section class="card hero" id="hero">
+    <div class="note" style="letter-spacing:.25em; font-weight:800; color:#91d8ff">SKYBLOCK ODAKLI • 1.20.x DESTEKLİ</div>
+    <h1>Profesyonel Minecraft Deneyimi</h1>
+    <p>Adil ekonomi, güvenli altyapı, gelişmiş sistemler. SkyHaven Network’te eğlence, ticaret ve rekabet bir arada.</p>
+
+    <div class="ip">
+      <strong>IP:&nbsp;</strong>
+      <code id="ipText">play.skyhaven.gg</code>
+      <button class="btn small" id="copyIp">Kopyala</button>
+    </div>
+
+    <div class="row">
+      <a class="btn em" href="#girisyardim">Nasıl Giriş Yapılır?</a>
+      <a class="btn" href="#discord">Discord</a>
+      <a class="btn" href="#kurallar">Kurallar</a>
+    </div>
+  </section>
+
+  <!-- Özellikler -->
+  <section class="section card" id="ozellikler">
     <h2>Özellikler</h2>
-    <ul>
+    <ul class="list">
       <li>Skyblock, ekonomi ve etkinlik sistemi</li>
       <li>Anti-cheat, aktif moderasyon</li>
       <li>1.20.x sürüm desteği</li>
     </ul>
-  </div>
-  <div class="card" id="rutbeler">
+  </section>
+
+  <!-- Rütbeler -->
+  <section class="section card" id="rutbeler">
     <h2>Rütbeler</h2>
-    <ul>
-      <li><b>VIP</b> — /repair, 2x sethome, özel kit</li>
-      <li><b>MVP</b> — VIP + /feed, AH limit artışı</li>
-      <li><b>LEGEND</b> — Tüm ayrıcalıklar + efektler</li>
+    <ul class="list">
+      <li><strong>VIP</strong> — /repair, 2× sethome, özel kit</li>
+      <li><strong>MVP</strong> — VIP + /feed, AH limit artışı</li>
+      <li><strong>LEGEND</strong> — Tüm ayrıcalıklar + efektler</li>
     </ul>
-  </div>
-  <div class="card" id="kurallar">
+  </section>
+
+  <!-- Kurallar -->
+  <section class="section card" id="kurallar">
     <h2>Kurallar</h2>
-    <ul>
-      <li>Hile, bug, dupe yasaktır.</li>
-      <li>Saygı, adalet, rekabet şarttır.</li>
+    <ul class="list">
+      <li>Hile, bug ve dupe kesinlikle yasaktır.</li>
+      <li>Hakaret, spam ve toksik davranışlar cezalandırılır.</li>
+      <li>P2W yok: avantajlar dengeli, rekabet adildir.</li>
     </ul>
-  </div>
-  <div class="card" id="rehber">
-    <h2>Rehber</h2>
-    <p>/is komutu ile adanı kur, ekonomi kurallarını öğren, ticaret yap ve büyü!</p>
-  </div>
-  <div class="card" id="ekip">
+  </section>
+
+  <!-- Rehber -->
+  <section class="section card" id="rehber">
+    <h2>Rehber — Nasıl Giriş Yapılır?</h2>
+    <ol class="list" style="list-style:decimal; padding-left:22px">
+      <li>Minecraft Java 1.20.x sürümünü aç.</li>
+      <li><code>Multiplayer</code> → <code>Add Server</code> de.</li>
+      <li>Sunucu adresi: <code>play.skyhaven.gg</code>.</li>
+      <li>Bağlan ve /register ile kayıt ol, /login ile giriş yap.</li>
+    </ol>
+  </section>
+
+  <!-- Ekip -->
+  <section class="section card" id="ekip">
     <h2>Ekip</h2>
-    <p>Yönetim: Emirhan<br>Geliştirici: SkyHaven Dev Team</p>
-  </div>
-</section>
+    <p class="note">Yönetim: Emirhan (Owner) • Moderasyon • SkyHaven Dev Team</p>
+  </section>
 
-<footer>© 2025 SkyHaven Network — Tüm hakları saklıdır.</footer>
+  <!-- Mağaza yer tutucu -->
+  <section class="section card" id="magaza">
+    <h2>Mağaza</h2>
+    <p class="note">VIP / MVP / LEGEND, anahtarlar ve kredi yakında burada.</p>
+  </section>
 
-<!-- Giriş Modal -->
-<div class="modalbg" id="loginModal">
-  <div class="modal">
-    <h2>Giriş Yap</h2>
-    <input class="input" type="email" placeholder="E-posta">
-    <input class="input" type="password" placeholder="Şifre">
-    <div class="actions">
-      <button class="btn ghost" id="loginClose">Kapat</button>
-      <button class="btn main">Giriş</button>
-    </div>
-    <div class="small">Hesabın yok mu? <a href="#" id="goRegister">Kayıt Ol</a></div>
-  </div>
-</div>
+</main>
 
-<!-- Kayıt Modal -->
-<div class="modalbg" id="registerModal">
-  <div class="modal">
-    <h2>Kayıt Ol</h2>
-    <input class="input" type="text" placeholder="Kullanıcı Adı">
-    <input class="input" type="email" placeholder="E-posta">
-    <input class="input" type="password" placeholder="Şifre">
-    <div class="actions">
-      <button class="btn ghost" id="regClose">Kapat</button>
-      <button class="btn main">Kayıt</button>
-    </div>
-    <div class="small">Zaten hesabın var mı? <a href="#" id="goLogin">Giriş Yap</a></div>
-  </div>
-</div>
+<footer class="container" style="opacity:.8; padding-bottom:40px">
+  © 2025 SkyHaven Network — Tüm hakları saklıdır.
+</footer>
 
 <script>
-const IP = "play.skyhaven.gg";
-document.getElementById("copyIp").onclick = async()=>{
-  await navigator.clipboard.writeText(IP);
-  alert("IP kopyalandı: "+IP);
-};
-const login=document.getElementById("loginModal"),reg=document.getElementById("registerModal");
-const show=m=>m.style.display="grid",hide=m=>m.style.display="none";
-document.getElementById("loginBtn").onclick=e=>{e.preventDefault();show(login);}
-document.getElementById("registerBtn").onclick=e=>{e.preventDefault();show(reg);}
-document.getElementById("loginClose").onclick=()=>hide(login);
-document.getElementById("regClose").onclick=()=>hide(reg);
-document.getElementById("goRegister").onclick=e=>{e.preventDefault();hide(login);show(reg);}
-document.getElementById("goLogin").onclick=e=>{e.preventDefault();hide(reg);show(login);}
-document.getElementById("joinGuide").onclick=e=>{
-  e.preventDefault();
-  alert(`Minecraft > Çok Oyunculu > Sunucu Ekle\nAd: SkyHaven\nIP: ${IP}\nKaydet ve Katıl!`);
-};
+/* Drawer */
+const drawer = document.getElementById('drawer');
+const btnDrawer = document.getElementById('btnDrawer');
+const backdrop = document.getElementById('drawerBackdrop');
+const drawerClose = document.getElementById('drawerClose');
+
+function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
+function closeDrawer(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); }
+
+btnDrawer.addEventListener('click', openDrawer);
+backdrop.addEventListener('click', closeDrawer);
+drawerClose.addEventListener('click', closeDrawer);
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeDrawer(); });
+
+/* IP Kopyala */
+document.getElementById('copyIp').addEventListener('click', async ()=>{
+  const ip = document.getElementById('ipText').textContent.trim();
+  try{ await navigator.clipboard.writeText(ip); alert('IP kopyalandı: ' + ip); }
+  catch(e){ prompt('Kopyalayamadıysak elle kopyala:', ip); }
+});
+
+/* Modal sahte açıcılar (ileride gerçek formlarla değiştirirsin) */
+document.querySelectorAll('[data-open="login"]').forEach(b=>b.onclick=()=>alert('Giriş paneli yakında.'));
+document.querySelectorAll('[data-open="register"]').forEach(b=>b.onclick=()=>alert('Kayıt paneli yakında.'));
 </script>
 </body>
 </html>
