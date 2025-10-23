@@ -3,395 +3,174 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SkyHaven Network — Resmi Site</title>
-<meta name="description" content="SkyHaven Network: profesyonel, adil ve hızlı Minecraft çoklu-oyuncu deneyimi. Skyblock ağırlıklı, etkinlikler, mağaza ve daha fazlası.">
-
-<!-- Yazı tipleri (kurumsal görünüm) -->
+<title>SkyHaven Network</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Russo+One&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --bg:#0a0f1a;
   --panel:#0f1726;
-  --glass:rgba(18,26,44,.5);
-  --stroke:rgba(255,255,255,.08);
   --text:#e8eefc;
-  --muted:#a7b7e6;
-  --accent:#69e0c2;
-  --accent2:#53b9ff;
-  --danger:#ff9aa4;
-  --radius:20px;
+  --muted:#9fb1d6;
+  --accent:#61e1c2;
+  --accent2:#4db8ff;
+  --stroke:rgba(255,255,255,.08);
+  --radius:18px;
   --shadow:0 10px 40px rgba(0,0,0,.45);
 }
-
-*{box-sizing:border-box}
-html,body{height:100%}
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-  margin:0; color:var(--text);
-  font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-  background:
-    radial-gradient(1000px 600px at 80% -10%, #1e2a5255 0%, transparent 60%),
-    radial-gradient(900px 600px at -10% 110%, #0aa0ff22 0%, transparent 60%),
-    var(--bg);
-  overflow-x:hidden;
+  background:radial-gradient(800px 500px at 80% 10%,#15326055,transparent 70%),
+             radial-gradient(800px 500px at 0% 100%,#0aa0ff22,transparent 70%),var(--bg);
+  font-family:Inter,sans-serif;color:var(--text);overflow-x:hidden;
 }
-
-/* hafif grid */
-.bg-grid::before{
-  content:""; position:fixed; inset:0; pointer-events:none; opacity:.35;
-  background:
-    linear-gradient(to right, #11203b 1px, transparent 1px) 0 0/64px 64px,
-    linear-gradient(to bottom,#11203b 1px, transparent 1px) 0 0/64px 64px;
-  mask: radial-gradient(1200px 700px at 50% 0%, #000 0%, transparent 70%);
+header{
+  position:fixed;top:16px;left:16px;right:16px;z-index:20;
+  display:flex;align-items:center;gap:20px;padding:10px 18px;
+  background:rgba(255,255,255,.03);border:1px solid var(--stroke);
+  border-radius:14px;backdrop-filter:blur(12px);box-shadow:var(--shadow);
 }
-
-/* NAV */
-.nav{
-  position:fixed; inset:16px 16px auto 16px; z-index:20;
-  display:flex; align-items:center; gap:18px; padding:10px 14px;
-  border:1px solid var(--stroke); border-radius:14px;
-  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-  backdrop-filter: blur(10px); box-shadow: var(--shadow);
-}
-.brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text);}
-.brand .word{display:flex; flex-direction:column; line-height:1}
-.brand .title{font:800 18px/1 Inter, sans-serif; letter-spacing:.2px}
-.brand .sub{font:600 11px/1 Inter, sans-serif; color:var(--muted); text-transform:uppercase; letter-spacing:.18em}
-.brand-logo{width:40px; height:40px; display:grid; place-items:center; border-radius:10px;
-  background:linear-gradient(135deg,#0d1b34,#0f203c); box-shadow:inset 0 0 0 1px #1d315a;}
-.brand-logo img{max-width:100%; max-height:100%; display:block; filter: drop-shadow(0 2px 6px rgba(0,0,0,.35));}
-
-.nav ul{list-style:none; margin:0 0 0 auto; padding:0; display:flex; gap:14px; align-items:center}
-.nav a.link{color:var(--text); text-decoration:none; font-weight:600; opacity:.9}
-.nav a.link:hover{opacity:1}
+header img{width:38px;height:38px;object-fit:contain;border-radius:8px;}
+.brand{font:800 18px/1 Inter;text-decoration:none;color:var(--text);}
+.nav{margin-left:auto;display:flex;gap:14px;align-items:center;}
+.nav a{color:var(--text);text-decoration:none;font-weight:600;opacity:.9}
+.nav a:hover{opacity:1}
 .btn{
-  padding:10px 16px; border-radius:12px; border:1px solid var(--stroke);
-  background: linear-gradient(135deg, var(--accent2), var(--accent));
-  color:#062126; font-weight:800; text-decoration:none; box-shadow:0 10px 30px rgba(83,185,255,.25);
+  padding:10px 16px;border-radius:12px;font-weight:800;text-decoration:none;
+  border:1px solid var(--stroke);white-space:nowrap;
 }
-.btn.ghost{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); color:var(--text);}
+.btn.main{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#04161b}
+.btn.ghost{background:rgba(255,255,255,.05);color:var(--text);}
+.hero{padding:130px 16px 40px;text-align:center;}
+.hero h1{font:800 clamp(28px,5vw,44px)/1.2 Inter;margin-bottom:10px;}
+.hero p{color:var(--muted);max-width:700px;margin:0 auto 20px;line-height:1.7}
+.ipbox{display:inline-flex;align-items:center;gap:8px;
+  padding:10px 14px;border-radius:10px;border:1px solid var(--stroke);
+  background:rgba(255,255,255,.05);margin-bottom:18px;}
+.copy{padding:6px 10px;background:rgba(255,255,255,.08);border-radius:8px;cursor:pointer;}
+.sections{width:min(1100px,96%);margin:auto;display:grid;gap:20px;}
+.card{padding:22px;border:1px solid var(--stroke);border-radius:var(--radius);
+  background:rgba(255,255,255,.04);backdrop-filter:blur(10px);}
+.card h2{font:800 20px/1.3 Inter;margin-bottom:8px;}
+.card ul{margin-left:20px;}
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
 
-@media (max-width:980px){
-  .nav{flex-wrap:wrap; gap:10px}
-  .nav ul{width:100%; order:2; justify-content:space-between; flex-wrap:wrap}
-}
-
-/* HERO */
-.hero{padding:120px 18px 40px}
-.container{width:min(1100px, 96%); margin-inline:auto}
-.glass{
-  padding:28px; border-radius:var(--radius); border:1px solid var(--stroke);
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-  backdrop-filter: blur(12px) saturate(120%); box-shadow:var(--shadow);
-}
-.kicker{color:var(--accent); font-weight:800; text-transform:uppercase; letter-spacing:.25em; font-size:.78rem}
-h1{margin:8px 0 10px; font:800 clamp(26px,4vw,40px)/1.2 Inter, sans-serif}
-.lead{color:#c8d6ff; margin:0 0 18px; line-height:1.7}
-
-.ip-strip{
-  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-  padding:12px; border-radius:12px; border:1px solid var(--stroke);
-  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-}
-.ip{font:800 16px/1 Inter, sans-serif; letter-spacing:.5px}
-.copy{padding:10px 14px; border-radius:10px; border:1px solid var(--stroke); background:rgba(255,255,255,.05); color:var(--text); font-weight:700}
-
-.cta{display:flex; flex-wrap:wrap; gap:12px; margin:16px 0 0}
-
-/* SECTIONS */
-.section{padding:18px 0 8px}
-.grid{display:grid; gap:16px; grid-template-columns:repeat(3, minmax(0,1fr))}
-.card{padding:18px; border-radius:16px; border:1px solid var(--stroke);
-  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); min-height:120px}
-.card h3{margin:0 0 6px; font:800 18px/1.3 Inter, sans-serif}
-.card p, .card li{color:#cfe0ff; margin:0; line-height:1.7}
-.card ul{margin:6px 0 0 18px}
-
-@media (max-width:960px){ .grid{grid-template-columns:1fr} }
-
-/* FOOTER */
-footer{padding:24px 0 40px; color:#a9b8e4; text-align:center}
-
-/* MODALS */
-.modal-back{
-  position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,.4); z-index:50;
-}
-.modal{width:min(520px, 92%); padding:22px; border-radius:16px; border:1px solid var(--stroke);
-  background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); backdrop-filter: blur(10px);}
-.modal h2{margin:0 0 12px; font:800 22px/1.2 Inter}
-.form{display:grid; gap:12px}
-.input{
-  width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--stroke);
-  background:rgba(255,255,255,.04); color:var(--text); font:600 14px/1 Inter;
-}
-.actions{display:flex; gap:10px; justify-content:flex-end; margin-top:6px}
-.small{font-size:.9rem; color:var(--muted)}
-
-.hidden{display:none !important}
+/* modal */
+.modalbg{position:fixed;inset:0;display:none;place-items:center;
+background:rgba(0,0,0,.5);z-index:50;}
+.modal{width:min(450px,92%);background:rgba(255,255,255,.05);backdrop-filter:blur(14px);
+border:1px solid var(--stroke);border-radius:16px;padding:20px;}
+.modal h2{margin-bottom:10px;}
+.input{width:100%;padding:10px 14px;margin:5px 0 10px;border-radius:10px;
+border:1px solid var(--stroke);background:rgba(255,255,255,.07);color:var(--text);}
+.actions{display:flex;justify-content:end;gap:10px;margin-top:6px;}
+.small{font-size:13px;color:var(--muted)}
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
-
-<!-- NAV -->
-<header class="nav">
-  <a class="brand" href="#top" aria-label="SkyHaven Network">
-    <div class="brand-logo"><img id="mcLogo" alt="Minecraft logo (yer tutucu)"></div>
-    <div class="word">
-      <span class="title">SkyHaven <span style="color:var(--accent)">Network</span></span>
-      <span class="sub">minecraft network</span>
-    </div>
-  </a>
-  <ul>
-    <li><a class="link" href="#ozellikler">Özellikler</a></li>
-    <li><a class="link" href="#rutbeler">Rütbeler</a></li>
-    <li><a class="link" href="#kurallar">Kurallar</a></li>
-    <li><a class="link" href="#rehber">Rehber</a></li>
-    <li><a class="link" href="#ekip">Ekip</a></li>
-    <li><a class="link" href="#" id="storeLink">Mağaza</a></li>
-    <li><a class="btn ghost" href="#" id="loginOpen">Giriş</a></li>
-    <li><a class="btn" href="#" id="registerOpen">Kayıt</a></li>
-  </ul>
+<header>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Minecraft_logo.svg" alt="logo">
+  <a class="brand" href="#">SkyHaven <span style="color:var(--accent)">Network</span></a>
+  <nav class="nav">
+    <a href="#ozellikler">Özellikler</a>
+    <a href="#rutbeler">Rütbeler</a>
+    <a href="#kurallar">Kurallar</a>
+    <a href="#rehber">Rehber</a>
+    <a href="#ekip">Ekip</a>
+    <a href="#" id="store">Mağaza</a>
+    <a class="btn ghost" href="#" id="loginBtn">Giriş</a>
+    <a class="btn main" href="#" id="registerBtn">Kayıt</a>
+  </nav>
 </header>
 
-<!-- HERO -->
-<section id="top" class="hero">
-  <div class="container">
-    <div class="glass">
-      <div class="kicker">Skyblock odaklı · 1.20.x destekli</div>
-      <h1>Profesyonel Minecraft deneyimi</h1>
-      <p class="lead">
-        Adil ekonomi, sezon etkinlikleri, gelişmiş güvenlik ve ölçülü kozmetik. SkyHaven Network’te oyuna odaklanırsın—gerisi bizim işimiz.
-      </p>
+<section class="hero">
+  <h1>Profesyonel Minecraft Deneyimi</h1>
+  <p>Adil ekonomi, güvenli altyapı, gelişmiş sistemler. SkyHaven Network’te eğlence, ticaret ve rekabet bir arada.</p>
+  <div class="ipbox"><b>IP:</b> <span id="ip">play.skyhaven.gg</span><span class="copy" id="copyIp">Kopyala</span></div><br>
+  <a class="btn main" href="#" id="joinGuide">Nasıl Giriş Yapılır?</a>
+</section>
 
-      <div class="ip-strip">
-        <strong>Sunucu IP:</strong>
-        <span id="serverIp" class="ip">play.skyhaven.gg</span>
-        <button id="copyIp" class="copy" type="button">Kopyala</button>
-      </div>
-
-      <div class="cta">
-        <a class="btn" href="#" id="joinGuide">Nasıl giriş yapılır?</a>
-        <a class="btn ghost" href="#" id="discordLink">Discord</a>
-        <a class="btn ghost" href="#" id="rulesLink">Kurallar</a>
-      </div>
-    </div>
+<section class="sections" id="ozellikler">
+  <div class="card">
+    <h2>Özellikler</h2>
+    <ul>
+      <li>Skyblock, ekonomi ve etkinlik sistemi</li>
+      <li>Anti-cheat, aktif moderasyon</li>
+      <li>1.20.x sürüm desteği</li>
+    </ul>
+  </div>
+  <div class="card" id="rutbeler">
+    <h2>Rütbeler</h2>
+    <ul>
+      <li><b>VIP</b> — /repair, 2x sethome, özel kit</li>
+      <li><b>MVP</b> — VIP + /feed, AH limit artışı</li>
+      <li><b>LEGEND</b> — Tüm ayrıcalıklar + efektler</li>
+    </ul>
+  </div>
+  <div class="card" id="kurallar">
+    <h2>Kurallar</h2>
+    <ul>
+      <li>Hile, bug, dupe yasaktır.</li>
+      <li>Saygı, adalet, rekabet şarttır.</li>
+    </ul>
+  </div>
+  <div class="card" id="rehber">
+    <h2>Rehber</h2>
+    <p>/is komutu ile adanı kur, ekonomi kurallarını öğren, ticaret yap ve büyü!</p>
+  </div>
+  <div class="card" id="ekip">
+    <h2>Ekip</h2>
+    <p>Yönetim: Emirhan<br>Geliştirici: SkyHaven Dev Team</p>
   </div>
 </section>
 
-<!-- ÖZELLİKLER -->
-<section id="ozellikler" class="section">
-  <div class="container grid">
-    <div class="card">
-      <h3>Ekonomi & Oynanış</h3>
-      <ul>
-        <li>Görev zincirleri, kasalar ve sezon etkinlikleri</li>
-        <li>Gelişmiş minyon sistemi, ada yükseltmeleri</li>
-        <li>Dengeli pazar, adil rekabet</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Teknik</h3>
-      <ul>
-        <li>1.20.x uyumlu, düşük gecikme</li>
-        <li>Ölçeklenebilir altyapı ve izleme</li>
-        <li>Otomatik yedekleme & bakım pencereleri</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Güvenlik</h3>
-      <ul>
-        <li>Anti-cheat & dupe/bug önlemleri</li>
-        <li>Aktif moderasyon & raporlama</li>
-        <li>Şeffaf kural uygulamaları</li>
-      </ul>
-    </div>
-  </div>
-</section>
+<footer>© 2025 SkyHaven Network — Tüm hakları saklıdır.</footer>
 
-<!-- RÜTBELER -->
-<section id="rutbeler" class="section">
-  <div class="container grid">
-    <div class="card">
-      <h3>VIP</h3>
-      <ul>
-        <li>/repair, 2× sethome, VIP kit</li>
-        <li>Öncelikli sıra</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>MVP</h3>
-      <ul>
-        <li>VIP + /feed, artırılmış AH limitleri</li>
-        <li>Kozmetik efektler</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>LEGEND</h3>
-      <ul>
-        <li>Tüm ayrıcalıklar + gelişmiş kozmetik</li>
-        <li>Sezon rozetleri</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- KURALLAR -->
-<section id="kurallar" class="section">
-  <div class="container grid">
-    <div class="card">
-      <h3>Kurallar (Özet)</h3>
-      <ul>
-        <li>Hile, bug, dupe kesinlikle yasaktır.</li>
-        <li>Hakaret, spam, toksik davranış cezalandırılır.</li>
-        <li>Pay-to-Win yok: avantajlar dengeli.</li>
-      </ul>
-      <p class="small" style="margin-top:8px"><a id="rulesMore" href="#">Tüm kuralları gör →</a></p>
-    </div>
-    <div class="card">
-      <h3>Rehber</h3>
-      <p>Skyblock’a yeni misin? Ada kurma, ekonomi, market ve komut rehberi.</p>
-      <p class="small" style="margin-top:8px"><a id="guideMore" href="#">Detaylı rehberi aç →</a></p>
-    </div>
-    <div class="card">
-      <h3>Destek</h3>
-      <p>Herhangi bir sorun için Discord bilet sistemi.</p>
-      <p class="small" style="margin-top:8px"><a id="supportLink" href="#">Discord’da destek aç →</a></p>
-    </div>
-  </div>
-</section>
-
-<!-- EKİP -->
-<section id="ekip" class="section">
-  <div class="container grid">
-    <div class="card">
-      <h3>Yönetim</h3>
-      <p>Emirhan (Owner), Moderasyon Ekibi</p>
-    </div>
-    <div class="card">
-      <h3>Geliştirme</h3>
-      <p>SkyHaven Dev Team — altyapı, anti-cheat, içerik.</p>
-    </div>
-    <div class="card">
-      <h3>Başvuru</h3>
-      <p>Takıma katılmak istersen başvuru formu.</p>
-      <p class="small" style="margin-top:8px"><a id="applyLink" href="#">Başvuru formu →</a></p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  © 2025 SkyHaven Network — Tüm hakları saklıdır.
-</footer>
-
-<!-- GİRİŞ / KAYIT MODALLARI -->
-<div id="loginModal" class="modal-back">
+<!-- Giriş Modal -->
+<div class="modalbg" id="loginModal">
   <div class="modal">
-    <h2>Giriş yap</h2>
-    <div class="form">
-      <input class="input" type="email" id="loginEmail" placeholder="E-posta">
-      <input class="input" type="password" id="loginPass" placeholder="Şifre">
-      <div class="actions">
-        <button class="btn ghost" id="loginClose">Kapat</button>
-        <button class="btn" id="loginSubmit">Giriş</button>
-      </div>
-      <div class="small">Hesabın yok mu? <a href="#" id="swapToRegister">Kayıt ol</a></div>
+    <h2>Giriş Yap</h2>
+    <input class="input" type="email" placeholder="E-posta">
+    <input class="input" type="password" placeholder="Şifre">
+    <div class="actions">
+      <button class="btn ghost" id="loginClose">Kapat</button>
+      <button class="btn main">Giriş</button>
     </div>
+    <div class="small">Hesabın yok mu? <a href="#" id="goRegister">Kayıt Ol</a></div>
   </div>
 </div>
 
-<div id="registerModal" class="modal-back">
+<!-- Kayıt Modal -->
+<div class="modalbg" id="registerModal">
   <div class="modal">
-    <h2>Kayıt ol</h2>
-    <div class="form">
-      <input class="input" type="text" id="regNick" placeholder="Oyuncu adı">
-      <input class="input" type="email" id="regEmail" placeholder="E-posta">
-      <input class="input" type="password" id="regPass" placeholder="Şifre (min 8)">
-      <div class="actions">
-        <button class="btn ghost" id="regClose">Kapat</button>
-        <button class="btn" id="regSubmit">Kayıt</button>
-      </div>
-      <div class="small">Zaten üye misin? <a href="#" id="swapToLogin">Giriş yap</a></div>
+    <h2>Kayıt Ol</h2>
+    <input class="input" type="text" placeholder="Kullanıcı Adı">
+    <input class="input" type="email" placeholder="E-posta">
+    <input class="input" type="password" placeholder="Şifre">
+    <div class="actions">
+      <button class="btn ghost" id="regClose">Kapat</button>
+      <button class="btn main">Kayıt</button>
     </div>
+    <div class="small">Zaten hesabın var mı? <a href="#" id="goLogin">Giriş Yap</a></div>
   </div>
 </div>
 
 <script>
-/* ================== Ayarlar (linkleri kendine göre değiştir) ================== */
-const SERVER_IP        = "play.skyhaven.gg";
-const STORE_URL        = "https://store.skyhaven.gg";
-const DISCORD_URL      = "https://discord.gg/yourInvite";
-const RULES_URL        = "https://emirhan12121.github.io/Newcube/kurallar.html"; // kendi kurallar sayfan
-const GUIDE_URL        = "https://emirhan12121.github.io/Newcube/kurallari.html"; // geçici rehber
-const SUPPORT_URL      = DISCORD_URL;
-const APPLY_URL        = DISCORD_URL;
-const MINECRAFT_LOGO_URL = "https://upload.wikimedia.org/wikipedia/commons/5/51/Minecraft_logo.svg"; 
-// Not: Logo telifine dikkat et; kendi barındırdığın bir görseli koyman daha doğru.
-
-/* ================== Başlat ================== */
-document.getElementById("serverIp").textContent = SERVER_IP;
-document.getElementById("mcLogo").src = MINECRAFT_LOGO_URL;
-
-/* Nav linkleri */
-document.getElementById("storeLink").onclick   = e => { e.preventDefault(); window.open(STORE_URL, "_blank"); };
-document.getElementById("discordLink").onclick = e => { e.preventDefault(); window.open(DISCORD_URL, "_blank"); };
-document.getElementById("rulesLink").onclick   = e => { e.preventDefault(); window.open(RULES_URL, "_blank"); };
-document.getElementById("rulesMore").onclick   = e => { e.preventDefault(); window.open(RULES_URL, "_blank"); };
-document.getElementById("guideMore").onclick   = e => { e.preventDefault(); window.open(GUIDE_URL, "_blank"); };
-document.getElementById("supportLink").onclick = e => { e.preventDefault(); window.open(SUPPORT_URL, "_blank"); };
-document.getElementById("applyLink").onclick   = e => { e.preventDefault(); window.open(APPLY_URL, "_blank"); };
-
-/* IP kopyala */
-document.getElementById("copyIp").addEventListener("click", async ()=>{
-  try{
-    await navigator.clipboard.writeText(SERVER_IP);
-    alert("IP panoya kopyalandı: " + SERVER_IP);
-  }catch{
-    prompt("Kopyalayamadık, elle kopyala:", SERVER_IP);
-  }
-});
-
-/* Giriş/Kayıt modalları (frontend mock) */
-const $ = s => document.querySelector(s);
-const show = el => el.style.display="grid";
-const hide = el => el.style.display="none";
-
-$("#loginOpen").onclick = e => { e.preventDefault(); show($("#loginModal")); };
-$("#registerOpen").onclick = e => { e.preventDefault(); show($("#registerModal")); };
-$("#loginClose").onclick = ()=> hide($("#loginModal"));
-$("#regClose").onclick   = ()=> hide($("#registerModal"));
-$("#swapToRegister").onclick = e => { e.preventDefault(); hide($("#loginModal")); show($("#registerModal")); };
-$("#swapToLogin").onclick    = e => { e.preventDefault(); hide($("#registerModal")); show($("#loginModal")); };
-
-/* Basit doğrulama; backend bağlayınca fetch ile API'ne gönderirsin */
-$("#loginSubmit").onclick = ()=>{
-  const email = $("#loginEmail").value.trim();
-  const pass  = $("#loginPass").value;
-  if(!email || !pass){ alert("Lütfen e-posta ve şifre gir."); return; }
-  alert("Giriş isteği hazır (backend bağlanınca API’ye gönderilecek).");
-  hide($("#loginModal"));
+const IP = "play.skyhaven.gg";
+document.getElementById("copyIp").onclick = async()=>{
+  await navigator.clipboard.writeText(IP);
+  alert("IP kopyalandı: "+IP);
 };
-$("#regSubmit").onclick = ()=>{
-  const nick = $("#regNick").value.trim();
-  const email= $("#regEmail").value.trim();
-  const pass = $("#regPass").value;
-  if(nick.length<3){ alert("Oyuncu adı en az 3 karakter olmalı."); return; }
-  if(!email.includes("@")){ alert("Geçerli bir e-posta gir."); return; }
-  if(pass.length<8){ alert("Şifre en az 8 karakter olmalı."); return; }
-  alert("Kayıt isteği hazır (backend bağlanınca API’ye gönderilecek).");
-  hide($("#registerModal"));
-};
-
-/* “Nasıl giriş yapılır?” kısa akış */
-document.getElementById("joinGuide").onclick = e=>{
+const login=document.getElementById("loginModal"),reg=document.getElementById("registerModal");
+const show=m=>m.style.display="grid",hide=m=>m.style.display="none";
+document.getElementById("loginBtn").onclick=e=>{e.preventDefault();show(login);}
+document.getElementById("registerBtn").onclick=e=>{e.preventDefault();show(reg);}
+document.getElementById("loginClose").onclick=()=>hide(login);
+document.getElementById("regClose").onclick=()=>hide(reg);
+document.getElementById("goRegister").onclick=e=>{e.preventDefault();hide(login);show(reg);}
+document.getElementById("goLogin").onclick=e=>{e.preventDefault();hide(reg);show(login);}
+document.getElementById("joinGuide").onclick=e=>{
   e.preventDefault();
-  alert(
-`Minecraft → Çok Oyunculu → Sunucu Ekle
-Ad: SkyHaven
-IP: ${SERVER_IP}
-→ Kaydet → Katıl
-
-Not: IP panoya kopyalamak için “Kopyala”yı kullanabilirsin.`);
+  alert(`Minecraft > Çok Oyunculu > Sunucu Ekle\nAd: SkyHaven\nIP: ${IP}\nKaydet ve Katıl!`);
 };
 </script>
 </body>
