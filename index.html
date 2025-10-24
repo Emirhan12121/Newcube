@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SkyHaven Network — Minecraft Network</title>
-<meta name="description" content="SkyHaven Network: Profesyonel Minecraft Skyblock deneyimi. Adil ekonomi, etkinlikler, gelişmiş güvenlik." />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
+  --navH:72px;
   --bg:#0b1220; --panel:#0f1a2d; --panel-soft:rgba(16,26,47,.7);
   --text:#eaf2ff; --muted:#9fb2d9;
   --pri:#62d0ff; --acc:#7cfcc4; --btn:#6b7bff; --danger:#ff8f8f;
@@ -19,9 +19,12 @@
   --danger:#ef4d4d; --ring:rgba(46,164,255,.35); --shadow:0 10px 24px rgba(10,19,40,.08);
 }
 *{box-sizing:border-box} html,body{height:100%}
-body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);
-  background:radial-gradient(1200px 600px at 70% -100px, rgba(124,252,196,.25), transparent 60%), var(--bg); overflow-x:hidden;}
-/* yıldızlı arka plan */
+body{
+  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
+  background:radial-gradient(1200px 600px at 70% -100px, rgba(124,252,196,.25), transparent 60%), var(--bg);
+  overflow-x:hidden; padding-top:calc(var(--navH) + 10px);
+}
+/* yıldızlı arka plan (sadece dark) */
 .stars,.stars:before,.stars:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-repeat:repeat;
   background-image:radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,.25) 40%, transparent 45%),
                    radial-gradient(1.5px 1.5px at 120px 80px, rgba(255,255,255,.18) 35%, transparent 45%),
@@ -29,15 +32,20 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sa
   background-size:600px 400px; animation:twinkle 18s linear infinite; opacity:.25}
 .stars:before{background-size:800px 500px;animation-duration:26s;opacity:.18}
 .stars:after{background-size:1000px 700px;animation-duration:32s;opacity:.12}
+:root[data-theme="light"] .stars{display:none}
 @keyframes twinkle{from{transform:translateY(0)} to{transform:translateY(-40px)}}
 
 .container{max-width:1080px;margin:0 auto;padding:20px;position:relative;z-index:1}
 .grid{display:grid;gap:18px}
 .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
   border:1px solid rgba(125,181,255,.18); border-radius:22px; padding:18px; box-shadow:var(--shadow); backdrop-filter:blur(10px)}
-.nav{position:sticky;top:0;z-index:5}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 6px}
-.brand{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--panel-soft);
+
+.nav{position:fixed; top:0; left:0; right:0; height:var(--navH); z-index:20;
+  background:linear-gradient(180deg, rgba(5,10,20,.70), rgba(5,10,20,.35));
+  border-bottom:1px solid rgba(125,181,255,.18); backdrop-filter:blur(10px)}
+:root[data-theme="light"] .nav{background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.6))}
+.nav-inner{height:100%; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:0 8px}
+.brand{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--panel-soft);
   border:1px solid rgba(125,181,255,.18); border-radius:16px; box-shadow:var(--shadow)}
 .logo{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,#5ee0ff,#86ffcf);color:#0b1220;font-weight:800}
 .brand .title small{display:block;color:var(--muted);font-size:.78rem;margin-top:2px}
@@ -50,7 +58,6 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sa
 .cartBtn{position:relative}
 .cartCount{position:absolute;top:-6px;right:-6px;background:#2de2a8;color:#062018;border-radius:999px;padding:1px 6px;font-weight:800;font-size:.72rem;border:2px solid #062018}
 
-/* hero */
 .hero{margin-top:6px}
 .hero h1{font-size:clamp(28px,6.5vw,48px);margin:0 0 8px;letter-spacing:.2px}
 .hero p.lead{color:var(--muted);font-size:1.05rem;margin:0 0 16px}
@@ -68,7 +75,7 @@ ol.guide{margin:8px 0 0 18px} ol.guide li{margin:10px 0}
   border:1px solid rgba(125,181,255,.18);color:var(--text);text-decoration:none}
 .link:hover{box-shadow:0 0 0 2px var(--ring) inset}
 
-.modal-backdrop{position:fixed;inset:0;display:none;place-items:center;padding:16px;background:rgba(0,0,0,.55);z-index:10}
+.modal-backdrop{position:fixed;inset:0;display:none;place-items:center;padding:16px;background:rgba(0,0,0,.55);z-index:30}
 .modal{width:min(960px,100%);max-height:84vh;overflow:auto}
 .modal header{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
 .modal header h3{margin:0}
@@ -77,7 +84,6 @@ ol.guide{margin:8px 0 0 18px} ol.guide li{margin:10px 0}
 .rank-card .perks{margin:8px 0 0 0;padding-left:18px}
 .price{font-size:1.4rem;font-weight:800;margin:8px 0}
 footer{opacity:.85;color:var(--muted);font-size:.92rem;padding:22px 0 40px}
-.nav.scrolled{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0));border-bottom:1px solid rgba(125,181,255,.18)}
 section{margin:10px 0}
 @media (min-width:900px){.grid.cols-2{grid-template-columns:1fr 1fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
 
@@ -92,7 +98,7 @@ hr.sep{border:0;border-top:1px solid rgba(125,181,255,.2);margin:8px 0}
 <body>
 <div class="stars"></div>
 
-<!-- NAV -->
+<!-- SABİT NAV -->
 <div class="nav">
   <div class="container nav-inner">
     <div class="brand">
@@ -108,8 +114,8 @@ hr.sep{border:0;border-top:1px solid rgba(125,181,255,.2);margin:8px 0}
       <button class="chip" data-open="shopModal">Mağaza</button>
       <button class="chip cartBtn" id="openCart">Sepet <span class="cartCount" id="cartCount" style="display:none">0</span></button>
       <button class="theme-toggle" id="themeBtn" title="Gece/Gündüz">🌙</button>
-      <button class="chip" id="loginBtn">Giriş</button>
-      <button class="btn primary" id="registerBtn">Kayıt</button>
+      <button class="chip">Giriş</button>
+      <button class="btn primary">Kayıt</button>
     </div>
   </div>
 </div>
@@ -191,26 +197,21 @@ hr.sep{border:0;border-top:1px solid rgba(125,181,255,.2);margin:8px 0}
 
 <footer class="container">© 2025 SkyHaven Network — Tüm hakları saklıdır.</footer>
 
-<!-- MODALLAR -->
-<!-- RÜTBELER -->
+<!-- MODALS -->
 <div class="modal-backdrop" id="ranksModal">
-  <div class="modal card rank-modal">
-    <header>
-      <h3>Rütbeler</h3>
-      <button class="close" data-close="ranksModal">Kapat ✕</button>
-    </header>
+  <div class="modal card">
+    <header><h3>Rütbeler</h3><button class="close" data-close="ranksModal">Kapat ✕</button></header>
     <div class="grid cols-2">
-      <div class="card rank-card"><span class="badge">KÖMÜR</span><div class="price">₺19,90</div><ul class="perks"><li>/repair (günlük)</li><li>1× sethome</li><li>Temel market indirimleri</li></ul></div>
-      <div class="card rank-card"><span class="badge">DEMİR</span><div class="price">₺34,90</div><ul class="perks"><li>Kömür + <b>/feed</b></li><li>2× sethome</li><li>AH limiti +20%</li></ul></div>
-      <div class="card rank-card"><span class="badge">ALTIN</span><div class="price">₺59,90</div><ul class="perks"><li>Demir + <b>/fly</b></li><li>3× sethome</li><li>Minyon verimliliği +10%</li></ul></div>
-      <div class="card rank-card"><span class="badge">ELMAS</span><div class="price">₺89,90</div><ul class="perks"><li>Altın + <b>/nick</b>, <b>/hat</b></li><li>4× sethome</li><li>AH limiti +50%</li></ul></div>
-      <div class="card rank-card"><span class="badge">ZÜMRÜT</span><div class="price">₺109,90</div><ul class="perks"><li>Elmas + <b>/back</b></li><li>5× sethome</li><li>Minyon verimliliği +20%</li></ul></div>
-      <div class="card rank-card"><span class="badge">SKYHAVEN</span><div class="price">₺149,90</div><ul class="perks"><li>Tüm rütbeler + kozmetik efektler</li><li>7× sethome, VIP kasa anahtarı x2/ay</li><li>Öncelikli destek, özel prefix</li></ul></div>
+      <div class="card"><span class="badge">KÖMÜR</span><div class="price">₺19,90</div><ul class="clean"><li>/repair (günlük)</li><li>1× sethome</li><li>Temel market indirimi</li></ul></div>
+      <div class="card"><span class="badge">DEMİR</span><div class="price">₺34,90</div><ul class="clean"><li>Kömür + <b>/feed</b></li><li>2× sethome</li><li>AH limiti +20%</li></ul></div>
+      <div class="card"><span class="badge">ALTIN</span><div class="price">₺59,90</div><ul class="clean"><li>Demir + <b>/fly</b></li><li>3× sethome</li><li>Minyon verimliliği +10%</li></ul></div>
+      <div class="card"><span class="badge">ELMAS</span><div class="price">₺89,90</div><ul class="clean"><li>Altın + <b>/nick</b>, <b>/hat</b></li><li>4× sethome</li><li>AH limiti +50%</li></ul></div>
+      <div class="card"><span class="badge">ZÜMRÜT</span><div class="price">₺109,90</div><ul class="clean"><li>Elmas + <b>/back</b></li><li>5× sethome</li><li>Minyon verimliliği +20%</li></ul></div>
+      <div class="card"><span class="badge">SKYHAVEN</span><div class="price">₺149,90</div><ul class="clean"><li>Tüm rütbeler + kozmetik efektler</li><li>7× sethome, VIP kasa anahtarı x2/ay</li><li>Öncelikli destek, özel prefix</li></ul></div>
     </div>
   </div>
 </div>
 
-<!-- MAĞAZA -->
 <div class="modal-backdrop" id="shopModal">
   <div class="modal card">
     <header>
@@ -221,78 +222,36 @@ hr.sep{border:0;border-top:1px solid rgba(125,181,255,.2);margin:8px 0}
       </div>
     </header>
     <div class="grid cols-2">
-      <div class="card">
-        <span class="badge">VIP</span>
-        <div class="price">₺59,90</div>
-        <p>/repair • 2× sethome • özel kit</p>
-        <button class="btn primary add" data-name="VIP" data-price="59.90">Sepete Ekle</button>
-      </div>
-      <div class="card">
-        <span class="badge">MVP</span>
-        <div class="price">₺89,90</div>
-        <p>VIP + /feed • AH limit artışı</p>
-        <button class="btn primary add" data-name="MVP" data-price="89.90">Sepete Ekle</button>
-      </div>
-      <div class="card">
-        <span class="badge">LEGEND</span>
-        <div class="price">₺129,90</div>
-        <p>Tüm ayrıcalıklar + efektler</p>
-        <button class="btn primary add" data-name="LEGEND" data-price="129.90">Sepete Ekle</button>
-      </div>
-      <div class="card">
-        <span class="badge">Anahtar</span>
-        <div class="price">₺14,90</div>
-        <p>Kasalar için rastgele ödüller</p>
-        <button class="btn primary add" data-name="Anahtar" data-price="14.90">Sepete Ekle</button>
-      </div>
-      <div class="card">
-        <span class="badge">Kredi 250</span>
-        <div class="price">₺39,90</div>
-        <p>Mağaza genelinde harcanabilir kredi</p>
-        <button class="btn primary add" data-name="Kredi 250" data-price="39.90">Sepete Ekle</button>
-      </div>
-      <div class="card">
-        <span class="badge">Kredi 750</span>
-        <div class="price">₺89,90</div>
-        <p>Ekonomik paket</p>
-        <button class="btn primary add" data-name="Kredi 750" data-price="89.90">Sepete Ekle</button>
-      </div>
+      <div class="card"><span class="badge">VIP</span><div class="price">₺59,90</div><p>/repair • 2× sethome • özel kit</p><button class="btn primary add" data-name="VIP" data-price="59.90">Sepete Ekle</button></div>
+      <div class="card"><span class="badge">MVP</span><div class="price">₺89,90</div><p>VIP + /feed • AH limit artışı</p><button class="btn primary add" data-name="MVP" data-price="89.90">Sepete Ekle</button></div>
+      <div class="card"><span class="badge">LEGEND</span><div class="price">₺129,90</div><p>Tüm ayrıcalıklar + efektler</p><button class="btn primary add" data-name="LEGEND" data-price="129.90">Sepete Ekle</button></div>
+      <div class="card"><span class="badge">Anahtar</span><div class="price">₺14,90</div><p>Kasalar için rastgele ödüller</p><button class="btn primary add" data-name="Anahtar" data-price="14.90">Sepete Ekle</button></div>
+      <div class="card"><span class="badge">Kredi 250</span><div class="price">₺39,90</div><p>Harcanabilir kredi</p><button class="btn primary add" data-name="Kredi 250" data-price="39.90">Sepete Ekle</button></div>
+      <div class="card"><span class="badge">Kredi 750</span><div class="price">₺89,90</div><p>Ekonomik paket</p><button class="btn primary add" data-name="Kredi 750" data-price="89.90">Sepete Ekle</button></div>
     </div>
-    <p style="color:var(--muted);margin-top:10px">Ödeme altyapısı (iyzico/Shopier/Stripe) entegrasyonu daha sonra eklenecek. Şimdilik butonlar yer tutucudur.</p>
+    <p style="color:var(--muted);margin-top:10px">Ödeme altyapısı daha sonra eklenecek. Butonlar şimdilik yer tutucudur.</p>
   </div>
 </div>
 
-<!-- KURALLAR -->
 <div class="modal-backdrop" id="rulesModal">
   <div class="modal card">
-    <header>
-      <h3>Kurallar</h3>
-      <button class="close" data-close="rulesModal">Kapat ✕</button>
-    </header>
+    <header><h3>Kurallar</h3><button class="close" data-close="rulesModal">Kapat ✕</button></header>
     <ul class="clean">
       <li>Hile, bug ve <b>dupe</b> kesinlikle yasaktır.</li>
       <li>Hakaret, spam ve toksik davranışlar cezalandırılır.</li>
-      <li>Pazar/ihale manipülasyonu yasaktır; adil ticaret.</li>
-      <li>P2W yok: avantajlar dengeli, rekabet adildir.</li>
-      <li>AFK farm ve serverı zorlayan otomasyon yasaktır.</li>
-      <li>Yetkililere saygı; itirazlar <b>ticket</b> sistemi ile yapılır.</li>
+      <li>Pazar/ihale manipülasyonu yasaktır; adil ticaret esastır.</li>
+      <li>P2W yok; avantajlar dengeli, rekabet adildir.</li>
+      <li>AFK farm ve sunucuyu zorlayan otomasyon yasaktır.</li>
+      <li>Yetkililere saygı; itirazlar <b>ticket</b> sistemiyle yapılır.</li>
     </ul>
   </div>
 </div>
 
-<!-- SEPET -->
 <div class="modal-backdrop" id="cartModal">
   <div class="modal card cart-modal">
-    <header>
-      <h3>Sepet</h3>
-      <button class="close" data-close="cartModal">Kapat ✕</button>
-    </header>
+    <header><h3>Sepet</h3><button class="close" data-close="cartModal">Kapat ✕</button></header>
     <div id="cartItems"></div>
-    <hr class="sep">
-    <div class="cart-total">
-      <span>Toplam</span>
-      <span id="cartTotal">₺0,00</span>
-    </div>
+    <hr class="sep"><div class="cart-total"><span>Toplam</span><span id="cartTotal">₺0,00</span></div>
     <div style="margin-top:10px;display:flex;gap:10px">
       <button class="btn" id="clearCart">Sepeti Temizle</button>
       <button class="btn primary" id="checkoutBtn" style="flex:1">Satın Al</button>
@@ -304,17 +263,13 @@ hr.sep{border:0;border-top:1px solid rgba(125,181,255,.2);margin:8px 0}
 /* Tema */
 const root = document.documentElement;
 const themeBtn = document.getElementById('themeBtn');
-function setTheme(mode){ if(mode==='light'){root.setAttribute('data-theme','light'); themeBtn.textContent='☀️';}
-  else {root.setAttribute('data-theme','dark'); themeBtn.textContent='🌙';}
+function setTheme(mode){
+  if(mode==='light'){ root.setAttribute('data-theme','light'); themeBtn.textContent='☀️'; }
+  else { root.setAttribute('data-theme','dark'); themeBtn.textContent='🌙'; }
   localStorage.setItem('sh-theme', mode);
 }
 setTheme(localStorage.getItem('sh-theme')||'dark');
 themeBtn.addEventListener('click', ()=> setTheme(root.getAttribute('data-theme')==='light'?'dark':'light'));
-
-/* Scroll navbar efekti */
-const nav = document.querySelector('.nav');
-const onScroll=()=>{(window.scrollY>6)?nav.classList.add('scrolled'):nav.classList.remove('scrolled')}
-onScroll(); window.addEventListener('scroll', onScroll);
 
 /* IP kopyala */
 document.getElementById('copyIp').addEventListener('click', async ()=>{
@@ -332,7 +287,7 @@ openers.forEach(b=>b.addEventListener('click',()=>{const id=b.getAttribute('data
 closers.forEach(b=>b.addEventListener('click',()=>{const id=b.getAttribute('data-close');const el=document.getElementById(id); if(el){el.style.display='none';document.body.style.overflow='auto';}}));
 document.querySelectorAll('.modal-backdrop').forEach(bg=>bg.addEventListener('click',e=>{if(e.target===bg){bg.style.display='none';document.body.style.overflow='auto';}}));
 
-/* Sepet mantığı */
+/* Sepet */
 const addButtons = document.querySelectorAll('.add');
 const cartModal = document.getElementById('cartModal');
 const openCart = document.getElementById('openCart');
@@ -344,8 +299,7 @@ const clearCartBtn = document.getElementById('clearCart');
 const checkoutBtn = document.getElementById('checkoutBtn');
 
 let cart = [];
-
-function formatTRY(n){ return '₺' + n.toFixed(2).replace('.',','); }
+const formatTRY = n => '₺' + n.toFixed(2).replace('.',',');
 
 function updateCartUI(){
   cartItemsEl.innerHTML = '';
@@ -362,41 +316,23 @@ function updateCartUI(){
     cartItemsEl.appendChild(row);
   });
   cartTotalEl.textContent = formatTRY(total);
-  if(cart.length>0){
-    cartCount.style.display='inline-block';
-    cartCount.textContent = cart.length;
-  }else{
-    cartCount.style.display='none';
-    cartItemsEl.innerHTML = '<div style="color:var(--muted)">Sepet boş.</div>';
-  }
-
-  // remove bağla
+  if(cart.length>0){ cartCount.style.display='inline-block'; cartCount.textContent = cart.length; }
+  else { cartCount.style.display='none'; cartItemsEl.innerHTML = '<div style="color:var(--muted)">Sepet boş.</div>'; }
   document.querySelectorAll('.remove').forEach(btn=>{
-    btn.onclick = () => { const i = +btn.getAttribute('data-idx'); cart.splice(i,1); updateCartUI(); };
+    btn.onclick = () => { cart.splice(+btn.getAttribute('data-idx'),1); updateCartUI(); };
   });
 }
-
 addButtons.forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    const name = btn.dataset.name;
-    const price = parseFloat(btn.dataset.price);
-    cart.push({name, price});
+    cart.push({name:btn.dataset.name, price:parseFloat(btn.dataset.price)});
     updateCartUI();
-    document.getElementById('cartModal').style.display='grid';
-    document.body.style.overflow='hidden';
+    cartModal.style.display='grid'; document.body.style.overflow='hidden';
   });
 });
-
-openCart.addEventListener('click', ()=>{cartModal.style.display='grid'; document.body.style.overflow='hidden'; updateCartUI();});
-openCart2.addEventListener('click', ()=>{cartModal.style.display='grid'; document.body.style.overflow='hidden'; updateCartUI();});
-
-clearCartBtn.addEventListener('click', ()=>{cart=[]; updateCartUI();});
-checkoutBtn.addEventListener('click', ()=>{
-  if(!cart.length){ alert('Sepet boş.'); return; }
-  alert('Ödeme sayfası yakında! (Yer tutucu)');
-});
-
-/* İlk çizim */
+(openCart||{}).onclick = ()=>{cartModal.style.display='grid'; document.body.style.overflow='hidden'; updateCartUI();};
+(openCart2||{}).onclick = ()=>{cartModal.style.display='grid'; document.body.style.overflow='hidden'; updateCartUI();};
+clearCartBtn.onclick = ()=>{cart=[]; updateCartUI();};
+checkoutBtn.onclick = ()=>{ if(!cart.length){ alert('Sepet boş.'); return; } alert('Ödeme sayfası yakında!'); };
 updateCartUI();
 </script>
 </body>
