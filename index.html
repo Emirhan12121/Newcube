@@ -3,415 +3,369 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SkyHaven Network | Skyblock Sunucusu</title>
-<meta name="description" content="SkyHaven Network: Skyblock odaklı, adil ekonomi ve etkinlikler. 1.20.x destekli profesyonel Minecraft deneyimi." />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>SkyHaven Network | Skyblock</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
+/* THEME */
 :root{
-  --bg:#0a0f1c;
-  --panel:#0d1626;
-  --panel-soft:rgba(13,22,38,.78);
-  --txt:#e9f1ff;
-  --muted:#9bb2ce;
-  --em:#53f5c6;
-  --em2:#7c77ff;
-  --btn:#6b7bff;
-  --danger:#ff8f8f;
+  --bg:#0a0f1c; --bg-soft:#0e1626;
+  --txt:#e9f1ff; --muted:#9bb2ce;
+  --em:#53f5c6; --em2:#7c77ff;
+  --panel:rgba(255,255,255,.03);
   --border:rgba(255,255,255,.08);
   --shadow:0 10px 30px rgba(0,0,0,.5);
-  --radius:18px;
+}
+:root.light{
+  --bg:#f5f8ff; --bg-soft:#ffffff;
+  --txt:#0b1220; --muted:#56627a;
+  --panel:rgba(0,0,0,.03); --border:rgba(0,0,0,.08);
+  --shadow:0 10px 28px rgba(15,30,60,.15);
 }
 *{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  color:var(--txt); background:radial-gradient(1200px 800px at 70% -100px, rgba(124,119,255,.25), transparent 60%),
-                   radial-gradient(1000px 600px at -20% -40px, rgba(83,245,198,.18), transparent 55%),
-                   #08111f;
-}
+body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--txt)}
+a{color:inherit}
+.container{max-width:1100px;margin:0 auto;padding:18px 16px}
 
-/* Header */
-.header{
-  position:sticky; top:0; z-index:100; backdrop-filter:saturate(1.1) blur(12px);
-  background:linear-gradient(180deg, rgba(10,15,28,.95), rgba(10,15,28,.78));
-  border-bottom:1px solid var(--border);
-}
-.nav{max-width:1100px; margin:0 auto; padding:14px 16px; display:flex; align-items:center; gap:14px}
-.logo-mark{width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, var(--em2), var(--em));
-  box-shadow:0 8px 22px rgba(124,119,255,.25), inset 0 0 0 1px rgba(255,255,255,.18); display:grid; place-items:center; flex:0 0 auto}
-.logo-mark svg{width:20px;height:20px;opacity:.9}
-.brand{display:flex; align-items:center; gap:10px; text-decoration:none}
-.brand h1{margin:0; font-size:20px; font-weight:800; letter-spacing:.2px}
-.brand small{display:block; color:var(--muted); font-weight:600; margin-top:-2px}
-.nav-core{display:flex; gap:18px; margin-left:auto; align-items:center}
-.nav-core a{color:var(--muted); text-decoration:none; font-weight:600}
-.nav-core a:hover{color:var(--txt)}
-.nav-core .btn{margin-left:4px}
-
-.btn{
-  appearance:none; border:1px solid var(--border); background:rgba(255,255,255,.02);
-  color:var(--txt); padding:10px 14px; border-radius:12px; font-weight:700; cursor:pointer;
-  transition:transform .06s ease, background .2s, box-shadow .2s, border-color .2s;
-  box-shadow:0 6px 16px rgba(0,0,0,.25);
-}
+/* HEADER */
+.header{position:sticky;top:0;z-index:100;background:linear-gradient(180deg, rgba(10,15,28,.9), rgba(10,15,28,.6));backdrop-filter:blur(10px)}
+:root.light .header{background:linear-gradient(180deg, rgba(245,248,255,.9), rgba(245,248,255,.7))}
+.nav{display:flex;gap:14px;align-items:center}
+.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--em2),var(--em));display:grid;place-items:center;box-shadow:0 8px 22px rgba(124,119,255,.25)}
+.logo svg{width:20px;height:20px}
+.brand b{font-weight:800}
+.brand small{display:block;color:var(--muted);margin-top:-2px;font-weight:600}
+.nav-fill{flex:1}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn{border:1px solid var(--border);background:var(--panel);color:var(--txt);padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.25)}
 .btn:hover{background:rgba(255,255,255,.06)}
-.btn:active{transform:translateY(1px)}
-.btn.em{border-color:transparent; color:#08101d; background:linear-gradient(90deg, var(--em2), var(--em)); text-shadow:0 1px 0 rgba(255,255,255,.25)}
-.btn.dark{background:rgba(255,255,255,.06);border-color:transparent}
+.btn.em{border-color:transparent;background:linear-gradient(90deg,var(--em2),var(--em));color:#071019}
+.iconbtn{padding:10px;border-radius:10px;display:grid;place-items:center}
+.iconbtn svg{width:22px;height:22px}
 
-.hamb{display:none; margin-left:8px}
-.hamb button{all:unset; padding:10px; border-radius:10px; cursor:pointer}
-.hamb svg{width:22px;height:22px; color:var(--txt)}
-
-/* Drawer */
-.drawer{position:fixed; inset:0; z-index:120; display:none}
-.drawer.open{display:block}
-.drawer .scrim{position:absolute; inset:0; background:rgba(0,0,0,.35); opacity:0; transition:opacity .25s}
-.drawer.open .scrim{opacity:1}
-.drawer .panel{
-  position:absolute; right:-400px; top:0; height:100%; width:min(86%,360px); background:rgba(14,22,38,.96);
-  border-left:1px solid var(--border); box-shadow:var(--shadow); padding:18px; display:flex; flex-direction:column; gap:14px;
-  transition:right .28s cubic-bezier(.2,.8,.2,1);
-}
-.drawer.open .panel{right:0}
-.drawer .panel a{color:var(--txt); text-decoration:none; padding:12px 10px; border-radius:10px; font-weight:700; letter-spacing:.2px}
-.drawer .panel a:hover{background:rgba(255,255,255,.06)}
-.drawer .panel .grp{margin-top:8px; padding-top:8px; border-top:1px dashed var(--border)}
-.drawer .close{position:absolute; right:10px; top:10px; background:transparent; border:0; color:var(--muted); cursor:pointer}
-
-/* Hero */
-main{max-width:1100px; margin:0 auto; padding:22px 16px 80px}
-.hero{
-  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-  border:1px solid var(--border); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow);
-  position:relative; overflow:hidden;
-}
-.hero:before{content:""; position:absolute; inset:-1px; background:
- radial-gradient(800px 260px at 50% -50px, rgba(124,119,255,.15), transparent 60%),
- radial-gradient(500px 180px at 60% 20px, rgba(83,245,198,.12), transparent 55%); pointer-events:none}
-.hero h2{font-size:38px; line-height:1.15; margin:0 0 12px}
-.hero p{color:var(--muted); font-size:18px; margin:0 0 22px}
-.ip-box{background:rgba(14,22,38,.8); border:1px solid var(--border); border-radius:14px; padding:14px; display:flex; gap:10px; align-items:center; width:100%; max-width:520px}
-.kit{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px}
-.kit .btn{min-width:150px}
-
-/* Status badge */
-.status{display:inline-flex; align-items:center; gap:10px; margin-top:14px; color:var(--muted); font-weight:700}
+/* HERO */
+.card{border:1px solid var(--border);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));box-shadow:var(--shadow)}
+.hero{padding:24px;position:relative;overflow:hidden}
+.hero h1{font-size:36px;line-height:1.15;margin:0 0 10px}
+.hero p{color:var(--muted);font-size:18px;margin:0 0 18px}
+.ip{display:flex;gap:10px;align-items:center;background:var(--bg-soft);border:1px solid var(--border);border-radius:14px;padding:12px;max-width:520px}
+.status{display:flex;align-items:center;gap:8px;margin-top:10px;color:var(--muted);font-weight:700}
 .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(90deg,#31ffa5,#39b3ff);box-shadow:0 0 8px rgba(83,245,198,.8)}
+.kit{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 
-/* Quick links */
-.quick{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:16px}
-.quick a{display:flex; align-items:center; justify-content:center; gap:8px; padding:10px; text-decoration:none; color:var(--txt);
-  border:1px solid var(--border); border-radius:12px; background:rgba(255,255,255,.02); font-weight:700}
-@media(min-width:680px){ .quick{grid-template-columns:repeat(6,1fr)} }
+/* QUICK */
+.quick{display:grid;gap:10px;margin-top:14px}
+.quick a{display:flex;align-items:center;justify-content:center;padding:10px 12px;text-decoration:none;border:1px solid var(--border);border-radius:12px;background:var(--panel);font-weight:700}
+@media(min-width:680px){.quick{grid-template-columns:repeat(6,1fr)}}
 
-/* Section cards */
-.section{margin-top:26px; background:rgba(14,22,38,.55); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px}
-.section h3{margin:0 0 10px; font-size:26px}
-ul{margin:10px 0 0 18px}
-li{margin:8px 0}
+/* SECTION */
+.section{margin-top:22px;padding:20px}
+.section h2{margin:0 0 10px}
+ul{margin:10px 0 0 18px}li{margin:8px 0}
 
-/* Store grid */
-.grid{display:grid; gap:16px}
-@media (min-width:720px){ .grid{grid-template-columns:repeat(3,1fr)} }
-.card{border:1px solid var(--border); background:rgba(255,255,255,.02); border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:10px}
-.card .bar{height:16px;border-radius:999px;background:linear-gradient(90deg,var(--em2),var(--em));margin-bottom:8px}
-.badge{display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:800; color:#09111f; background:linear-gradient(90deg, var(--em2), var(--em))}
-.price{color:var(--txt); font-weight:800; font-size:18px}
-.card small{color:var(--muted)}
+/* MODALS */
+.modal{position:fixed;inset:0;z-index:140;display:none}
+.modal.open{display:grid;place-items:center}
+.modal .mask{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+.modal .box{position:relative;width:min(92%,720px);max-height:86vh;overflow:auto;background:rgba(14,22,38,.98);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+:root.light .modal .box{background:#fff}
+.close-x{position:absolute;right:10px;top:8px;background:transparent;border:0;color:var(--muted);cursor:pointer}
 
-/* FAQ */
-.faq{display:grid; gap:10px}
-.faq details{background:rgba(255,255,255,.02); border:1px solid var(--border); border-radius:12px; padding:12px}
-.faq summary{cursor:pointer; font-weight:700}
-.faq p{color:var(--muted)}
+/* RANKS GRID */
+.grid{display:grid;gap:14px}
+@media(min-width:720px){.grid{grid-template-columns:repeat(3,1fr)}}
+.rank{padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--panel)}
+.rank .bar{height:14px;border-radius:999px;background:linear-gradient(90deg,var(--em2),var(--em));margin-bottom:8px}
+.rank h3{margin:6px 0 4px}
+.rank small{color:var(--muted)}
 
-/* Modals */
-.modal{position:fixed; inset:0; z-index:140; display:none}
-.modal.open{display:grid; place-items:center}
-.modal .mask{position:absolute; inset:0; background:rgba(0,0,0,.6)}
-.modal .box{position:relative; width:min(92%,420px); background:rgba(14,22,38,.98); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:var(--shadow)}
-.form{display:grid; gap:10px; margin-top:10px}
-.input{padding:12px 12px; border-radius:10px; border:1px solid var(--border); background:rgba(255,255,255,.02); color:var(--txt)}
-.close-x{position:absolute; right:10px; top:8px; background:transparent; color:var(--muted); border:0; cursor:pointer}
-
-/* Toast & to-top */
-#toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(20px); background:rgba(20,30,50,.95); color:var(--txt); border:1px solid var(--border);
-  padding:10px 14px; border-radius:10px; box-shadow:var(--shadow); opacity:0; pointer-events:none; transition:opacity .25s, transform .25s; z-index:150}
-#toTop{position:fixed; right:16px; bottom:20px; z-index:90; display:none}
-#toTop.show{display:block}
-
-/* Footer */
-footer{max-width:1100px; margin:40px auto; padding:0 16px 60px; color:var(--muted)}
-
-a:focus, button:focus{outline:2px solid var(--em2); outline-offset:2px}
-@media (max-width:880px){
-  .nav-core{display:none}
-  .hamb{display:block}
-  .hero h2{font-size:30px}
-}
+/* SUPPORT LIST */
+.support{display:grid;gap:10px}
+.support a{padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--panel);text-decoration:none;font-weight:700}
+footer{color:var(--muted);padding:40px 16px}
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="header">
-  <nav class="nav">
-    <a href="#" class="brand" aria-label="Anasayfa">
-      <span class="logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="#06101c"><path d="M4 7.5a3.5 3.5 0 0 1 3.5-3.5h9a3.5 3.5 0 0 1 3.5 3.5v9a3.5 3.5 0 0 1-3.5 3.5h-9A3.5 3.5 0 0 1 4 16.5v-9Z"/><path fill="#cfeaff" d="M7 7h2.6l2.4 3.2L14.4 7H17v10h-2.4V12l-2 2.6L10.6 12v5H8V7Z"/></svg>
-      </span>
-      <h1>SkyHaven <span style="color:var(--em)">Network</span><small>Minecraft Network</small></h1>
-    </a>
-
-    <div class="nav-core">
-      <a href="#ozellikler">Özellikler</a>
-      <a href="#rutbeler">Rütbeler</a>
-      <a href="#kurallar">Kurallar</a>
-      <a href="#rehber">Rehber</a>
-      <a href="#ekip">Ekip</a>
-      <a href="#magaza">Mağaza</a>
-      <button class="btn dark" id="btnLogin">Giriş</button>
-      <button class="btn em" id="btnSignup">Kayıt</button>
+  <div class="container nav">
+    <div class="logo" aria-hidden="true">
+      <!-- simple M mark -->
+      <svg viewBox="0 0 24 24" fill="#06101c"><path d="M4 7.5a3.5 3.5 0 0 1 3.5-3.5h9a3.5 3.5 0 0 1 3.5 3.5v9a3.5 3.5 0 0 1-3.5 3.5h-9A3.5 3.5 0 0 1 4 16.5v-9Z"/><path fill="#cfeaff" d="M7 7h2.6l2.4 3.2L14.4 7H17v10h-2.4V12l-2 2.6L10.6 12v5H8V7Z"/></svg>
     </div>
-
-    <div class="hamb">
-      <button id="openDrawer" aria-label="Menüyü aç">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/></svg>
+    <div class="brand">
+      <b>SkyHaven <span style="color:var(--em)">Network</span></b>
+      <small>Minecraft Network</small>
+    </div>
+    <div class="nav-fill"></div>
+    <div class="nav-actions">
+      <button id="btnRanks" class="btn">Rütbeler</button>
+      <button id="btnRules" class="btn">Kurallar</button>
+      <button id="btnStore" class="btn">Mağaza</button>
+      <button id="btnTeam"  class="btn">Ekip</button>
+      <button id="btnTheme" class="iconbtn" title="Gece/Gündüz">
+        <!-- lamp -->
+        <svg id="lamp" viewBox="0 0 24 24" fill="currentColor"><path d="M9 21h6v-2H9v2Zm3-20C7.9 1 4.5 4.2 4.06 8.27A6 6 0 0 0 9 14v2h6v-2a6 6 0 0 0 4.94-5.73C19.5 4.2 16.1 1 12 1Z"/></svg>
       </button>
-    </div>
-  </nav>
-</header>
-
-<!-- Drawer (mobil menü) -->
-<aside class="drawer" id="drawer" aria-hidden="true">
-  <div class="scrim" id="closeDrawer"></div>
-  <div class="panel">
-    <button class="close btn" id="xDrawer">Kapat</button>
-    <div style="display:flex; gap:8px">
-      <button class="btn dark" id="mLogin">Giriş</button>
-      <button class="btn em" id="mSignup">Kayıt</button>
-    </div>
-    <div class="grp">
-      <a href="#ozellikler" onclick="closeDrawer()">Özellikler</a>
-      <a href="#rutbeler" onclick="closeDrawer()">Rütbeler</a>
-      <a href="#kurallar" onclick="closeDrawer()">Kurallar</a>
-      <a href="#rehber" onclick="closeDrawer()">Rehber</a>
-      <a href="#ekip" onclick="closeDrawer()">Ekip</a>
-      <a href="#magaza" onclick="closeDrawer()">Mağaza</a>
+      <button id="btnLogin" class="btn">Giriş</button>
+      <button id="btnSignup" class="btn em">Kayıt</button>
     </div>
   </div>
-</aside>
+</header>
 
-<main>
+<main class="container">
+
   <!-- HERO -->
-  <section class="hero" id="hero">
-    <h2>Profesyonel Minecraft Deneyimi</h2>
-    <p>Adil ekonomi, güvenli altyapı, gelişmiş sistemler. SkyHaven Network’te eğlence, ticaret ve rekabet bir arada.</p>
-    <div class="ip-box">
-      <strong style="opacity:.85">IP:</strong>
-      <span id="ipText" style="font-weight:800; letter-spacing:.3px">play.skyhaven.gg</span>
+  <section class="card hero">
+    <h1>Profesyonel Minecraft Deneyimi</h1>
+    <p>Adil ekonomi, güvenli altyapı ve gelişmiş sistemler. SkyHaven’da eğlence, ticaret ve rekabet bir arada.</p>
+
+    <div class="ip">
+      <strong>IP:</strong>
+      <span id="ip">play.skyhavan.com</span>
       <span style="flex:1"></span>
       <button class="btn" id="copyIp">Kopyala</button>
     </div>
-    <div class="status"><span class="dot"></span> <span id="statTxt">Online • 128 oyuncu</span></div>
+    <div class="status"><span class="dot"></span> Online • <span>128</span> oyuncu</div>
 
     <div class="kit">
       <a class="btn em" href="#rehber">Nasıl Giriş Yapılır?</a>
-      <a class="btn" href="https://discord.com" target="_blank" rel="noopener">Discord</a>
-      <a class="btn" href="#kurallar">Kurallar</a>
+      <button class="btn" id="btnRanks2">Rütbeleri Gör</button>
+      <button class="btn" id="btnStore2">Mağazayı Aç</button>
+      <button class="btn" id="btnRules2">Kuralları Aç</button>
     </div>
 
-    <div class="quick" aria-label="Hızlı bağlantılar">
-      <a href="#magaza">Mağaza</a>
-      <a href="https://discord.com" target="_blank" rel="noopener">Discord</a>
-      <a href="#kurallar">Kurallar</a>
-      <a href="#indir">İndir</a>
-      <a href="#oyver">Oy Ver</a>
+    <div class="quick" style="grid-template-columns:repeat(4,1fr)">
+      <a href="#ozellikler">Özellikler</a>
+      <a href="#rehber">Rehber</a>
       <a href="#destek">Destek</a>
+      <a href="https://discord.gg/8gFWAPWmzW" target="_blank" rel="noopener">Discord</a>
     </div>
   </section>
 
   <!-- ÖZELLİKLER -->
-  <section class="section" id="ozellikler">
-    <h3>Özellikler</h3>
+  <section id="ozellikler" class="card section">
+    <h2>Özellikler</h2>
     <ul>
-      <li>Skyblock, ekonomi ve etkinlik sistemi</li>
-      <li>Anti-cheat, aktif moderasyon</li>
-      <li>1.20.x sürüm desteği</li>
-    </ul>
-  </section>
-
-  <!-- RÜTBELER -->
-  <section class="section" id="rutbeler">
-    <h3>Rütbeler</h3>
-    <ul>
-      <li><strong>VIP</strong> — <code>/repair</code>, 2× <code>sethome</code>, özel kit</li>
-      <li><strong>MVP</strong> — VIP + <code>/feed</code>, AH limit artışı</li>
-      <li><strong>LEGEND</strong> — Tüm ayrıcalıklar + kozmetik efektler</li>
-    </ul>
-  </section>
-
-  <!-- KURALLAR -->
-  <section class="section" id="kurallar">
-    <h3>Kurallar</h3>
-    <ul>
-      <li>Hile, bug ve dupe kesinlikle yasaktır.</li>
-      <li>Hakaret, spam ve toksik davranışlar cezalandırılır.</li>
-      <li>P2W yok: avantajlar dengeli, rekabet adildir.</li>
+      <li>Ekonomi odaklı <b>Skyblock</b> ve sezon etkinlikleri</li>
+      <li>Adil pazar, anti-cheat ve aktif moderasyon</li>
+      <li>Gelişmiş <b>minyon</b> sistemi ve ada yükseltmeleri</li>
+      <li>Görev zincirleri, kasalar ve <b>kilit</b> anahtarları</li>
+      <li>1.20.x uyumlu sürüm ve düşük gecikme (EU node)</li>
     </ul>
   </section>
 
   <!-- REHBER -->
-  <section class="section" id="rehber">
-    <h3>Rehber — Nasıl Giriş Yapılır?</h3>
+  <section id="rehber" class="card section">
+    <h2>Rehber — Nasıl Giriş Yapılır?</h2>
     <ol style="margin:8px 0 0 18px">
-      <li>Minecraft Java 1.20.x sürümünü aç.</li>
-      <li><em>Multiplayer → Add Server</em> de.</li>
-      <li>Sunucu adresi: <strong id="ipText2">play.skyhaven.gg</strong></li>
-      <li>Bağlan ve <code>/register şifre şifre</code> ile kayıt ol, <code>/login şifre</code> ile giriş yap.</li>
+      <li><b>Minecraft Java 1.20.x</b> sürümünü aç.</li>
+      <li><i>Multiplayer → Add Server</i> deyip adresi gir: <b>play.skyhavan.com</b>.</li>
+      <li>Sunucuya bağlan, ilk girişte <code>/register şifre şifre</code> ile kayıt ol.</li>
+      <li>Sonraki girişlerde <code>/login şifre</code> yaz.</li>
     </ol>
-    <div class="faq" style="margin-top:16px">
-      <details><summary>Skyblock’ta para nasıl kazanılır?</summary><p>Adanda market kur, oyuncularla ticaret yap (<code>/ticaret</code>), eşyalarını sat (<code>/sat</code>), ihaleye koy (<code>/ihale</code>).</p></details>
-      <details><summary>Yeni ada ve üye yönetimi</summary><p><code>/is create</code> ile ada oluştur; <code>/is invite</code> ile üye davet et; <code>/is settings</code> ile izinleri düzenle.</p></details>
-      <details><summary>Hızlı komutlar</summary><p><code>/spawn</code>, <code>/sethome</code>/<code>/home</code>, <code>/tpa</code>, <code>/ah</code>.</p></details>
+    <ul style="margin:12px 0 0 18px;color:var(--muted)">
+      <li><code>/spawn</code> başlangıca döner, <code>/sethome</code> ve <code>/home</code> ile eve ışınlan.</li>
+      <li><code>/is create</code> ada kur; <code>/is invite</code> ile arkadaş ekle; <code>/is settings</code> izinleri yönet.</li>
+      <li>Para için: market kur, <code>/sat</code>, <code>/ah</code> ve <code>/ticaret</code> kullan.</li>
+    </ul>
+  </section>
+
+  <!-- DESTEK -->
+  <section id="destek" class="card section">
+    <h2>Destek</h2>
+    <div class="support">
+      <a href="mailto:support@skyhaven.gg">📧 E-posta: support@skyhaven.gg</a>
+      <a href="https://discord.gg/8gFWAPWmzW" target="_blank" rel="noopener">💬 Discord: discord.gg/8gFWAPWmzW</a>
+      <a href="https://instagram.com/skyhaven" target="_blank" rel="noopener">📷 Instagram: @skyhaven</a>
     </div>
   </section>
-
-  <!-- EKİP -->
-  <section class="section" id="ekip">
-    <h3>Ekip</h3>
-    <ul><li>Yönetim: Emirhan (Owner) • Moderasyon • SkyHaven Dev Team</li></ul>
-  </section>
-
-  <!-- MAĞAZA -->
-  <section class="section" id="magaza">
-    <h3>Mağaza</h3>
-    <div class="grid">
-      <article class="card"><div class="bar"></div><span class="badge">VIP</span><div class="price">₺59,90</div><small>/repair • 2× sethome • özel kit</small><button class="btn em">Sepete Ekle</button></article>
-      <article class="card"><div class="bar"></div><span class="badge">MVP</span><div class="price">₺89,90</div><small>VIP + /feed • AH limit artışı</small><button class="btn em">Sepete Ekle</button></article>
-      <article class="card"><div class="bar"></div><span class="badge">LEGEND</span><div class="price">₺129,90</div><small>Tüm ayrıcalıklar + efektler</small><button class="btn em">Sepete Ekle</button></article>
-      <article class="card"><div class="bar"></div><span class="badge">Anahtar</span><div class="price">₺14,90</div><small>Kasalar için rastgele ödüller</small><button class="btn em">Sepete Ekle</button></article>
-      <article class="card"><div class="bar"></div><span class="badge">Kredi 250</span><div class="price">₺39,90</div><small>Mağaza genelinde harcanabilir kredi</small><button class="btn em">Sepete Ekle</button></article>
-      <article class="card"><div class="bar"></div><span class="badge">Kredi 750</span><div class="price">₺89,90</div><small>Ekonomik paket</small><button class="btn em">Sepete Ekle</button></article>
-    </div>
-    <p style="color:var(--muted); margin-top:10px">Ödeme altyapısı (iyzico/Shopier/Stripe) entegrasyonu daha sonra eklenecek. Şimdilik butonlar yer tutucudur.</p>
-  </section>
-
-  <!-- Yer tutucu bağlantı bölümleri -->
-  <section class="section" id="indir"><h3>İndir</h3><p class="muted">Yakında: Client/Modpack bağlantıları.</p></section>
-  <section class="section" id="oyver"><h3>Oy Ver</h3><p class="muted">Yakında: Oylama sitelerine yönlendirme ve ödüller.</p></section>
-  <section class="section" id="destek"><h3>Destek</h3><p class="muted">Bilet sistemi/Discord rol eşlemesi burada listelenecek.</p></section>
 </main>
 
-<footer>© 2025 SkyHaven Network — Tüm hakları saklıdır.</footer>
+<footer class="container">© 2025 SkyHaven Network — Tüm hakları saklıdır.</footer>
 
-<!-- Modals -->
-<div class="modal" id="modalLogin" aria-hidden="true">
+<!-- MODALS -->
+<!-- RANKS -->
+<div class="modal" id="modalRanks">
+  <div class="mask" data-close="#modalRanks"></div>
+  <div class="box">
+    <button class="close-x" data-close="#modalRanks">✕</button>
+    <h2>Rütbeler</h2>
+    <div class="grid" style="margin-top:10px">
+      <div class="rank">
+        <div class="bar"></div>
+        <h3>1. Kömür</h3>
+        <small>Başlangıç</small>
+        <ul>
+          <li>2× <code>sethome</code></li>
+          <li>/hat, /workbench</li>
+          <li>Günlük 5.000 coin bonus</li>
+        </ul>
+      </div>
+      <div class="rank">
+        <div class="bar"></div>
+        <h3>2. Demir</h3>
+        <small>Gelişen oyuncu</small>
+        <ul>
+          <li>Kömür + <code>/repair</code> (ayda 5)</li>
+          <li>Ev sayısı 3</li>
+          <li>İhale limiti +2</li>
+        </ul>
+      </div>
+      <div class="rank">
+        <div class="bar"></div>
+        <h3>3. Altın</h3>
+        <small>Konfor</small>
+        <ul>
+          <li>Demir + <code>/feed</code></li>
+          <li>Adada +1 minyon slotu</li>
+          <li>Kasada %3 indirim</li>
+        </ul>
+      </div>
+      <div class="rank">
+        <div class="bar"></div>
+        <h3>4. Elmas</h3>
+        <small>Güçlü</small>
+        <ul>
+          <li>Altın + <code>/fly</code> (spawn & ada)</li>
+          <li>Ev sayısı 5 • İhale limiti +4</li>
+          <li>Günlük 15.000 coin</li>
+        </ul>
+      </div>
+      <div class="rank">
+        <div class="bar"></div>
+        <h3>5. Zümrüt</h3>
+        <small>Elit</small>
+        <ul>
+          <li>Elmas + <code>/fix all</code> (günlük 1)</li>
+          <li>Adada +2 minyon slotu</li>
+          <li>Kasa şansı +%10</li>
+        </ul>
+      </div>
+      <div class="rank">
+        <div class="bar"></div>
+        <h3>6. SkyHaven</h3>
+        <small>En yüksek rütbe</small>
+        <ul>
+          <li>Tüm ayrıcalıklar + <code>/nick</code>, özel kozmetikler</li>
+          <li>Ev sayısı 8 • İhale limiti +8</li>
+          <li>Günlük 30.000 coin + özel etkinlik girişleri</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RULES -->
+<div class="modal" id="modalRules">
+  <div class="mask" data-close="#modalRules"></div>
+  <div class="box">
+    <button class="close-x" data-close="#modalRules">✕</button>
+    <h2>Kurallar</h2>
+    <ul>
+      <li>Hile, bug ve dupe yasaktır.</li>
+      <li>Hakaret, spam, toksik davranış cezalandırılır.</li>
+      <li>Pay2Win yok: avantajlar dengeli olmalı.</li>
+      <li>Pazar/ihale dolandırıcılığı yasaktır.</li>
+    </ul>
+    <p style="color:var(--muted)">Detaylı metni daha sonra genişletebiliriz.</p>
+  </div>
+</div>
+
+<!-- STORE -->
+<div class="modal" id="modalStore">
+  <div class="mask" data-close="#modalStore"></div>
+  <div class="box">
+    <button class="close-x" data-close="#modalStore">✕</button>
+    <h2>Mağaza</h2>
+    <p style="color:var(--muted);margin-top:-6px">İçeriği birlikte güncelleyeceğiz. Şimdilik örnek ürünler:</p>
+    <div class="grid" style="margin-top:10px">
+      <div class="rank"><div class="bar"></div><h3>Kömür</h3><small>₺19,90</small><button class="btn em">Sepete Ekle</button></div>
+      <div class="rank"><div class="bar"></div><h3>Demir</h3><small>₺34,90</small><button class="btn em">Sepete Ekle</button></div>
+      <div class="rank"><div class="bar"></div><h3>Altın</h3><small>₺59,90</small><button class="btn em">Sepete Ekle</button></div>
+      <div class="rank"><div class="bar"></div><h3>Elmas</h3><small>₺89,90</small><button class="btn em">Sepete Ekle</button></div>
+      <div class="rank"><div class="bar"></div><h3>Zümrüt</h3><small>₺119,90</small><button class="btn em">Sepete Ekle</button></div>
+      <div class="rank"><div class="bar"></div><h3>SkyHaven</h3><small>₺169,90</small><button class="btn em">Sepete Ekle</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<div class="modal" id="modalTeam">
+  <div class="mask" data-close="#modalTeam"></div>
+  <div class="box">
+    <button class="close-x" data-close="#modalTeam">✕</button>
+    <h2>Ekip</h2>
+    <p style="color:var(--muted)">Buraya ekip bilgilerini sonra ekleyebiliriz.</p>
+  </div>
+</div>
+
+<!-- AUTH (demo) -->
+<div class="modal" id="modalLogin">
   <div class="mask" data-close="#modalLogin"></div>
-  <div class="box" role="dialog" aria-modal="true" aria-label="Giriş yap">
+  <div class="box">
     <button class="close-x" data-close="#modalLogin">✕</button>
-    <h3 style="margin:0 0 6px">Giriş yap</h3>
-    <p style="color:var(--muted); margin:0 0 10px">Hesabın yok mu? <a href="#" id="swapToSignup">Kayıt ol</a></p>
-    <form class="form" onsubmit="event.preventDefault(); alert('Demo: henüz canlı değil');">
-      <input class="input" type="email" placeholder="E-posta" required>
-      <input class="input" type="password" placeholder="Şifre" required>
-      <button class="btn em" type="submit">Giriş</button>
+    <h2>Giriş</h2>
+    <form onsubmit="event.preventDefault();alert('Demo');" style="display:grid;gap:10px;margin-top:10px">
+      <input class="btn" style="text-align:left" placeholder="E-posta" />
+      <input class="btn" style="text-align:left" placeholder="Şifre" type="password" />
+      <button class="btn em">Giriş</button>
     </form>
   </div>
 </div>
-
-<div class="modal" id="modalSignup" aria-hidden="true">
+<div class="modal" id="modalSignup">
   <div class="mask" data-close="#modalSignup"></div>
-  <div class="box" role="dialog" aria-modal="true" aria-label="Kayıt ol">
+  <div class="box">
     <button class="close-x" data-close="#modalSignup">✕</button>
-    <h3 style="margin:0 0 6px">Kayıt ol</h3>
-    <p style="color:var(--muted); margin:0 0 10px">Zaten hesabın var mı? <a href="#" id="swapToLogin">Giriş yap</a></p>
-    <form class="form" onsubmit="event.preventDefault(); alert('Demo: henüz canlı değil');">
-      <input class="input" type="text" placeholder="Kullanıcı adı" required>
-      <input class="input" type="email" placeholder="E-posta" required>
-      <input class="input" type="password" placeholder="Şifre" required>
-      <button class="btn em" type="submit">Kayıt</button>
+    <h2>Kayıt</h2>
+    <form onsubmit="event.preventDefault();alert('Demo');" style="display:grid;gap:10px;margin-top:10px">
+      <input class="btn" style="text-align:left" placeholder="Kullanıcı adı" />
+      <input class="btn" style="text-align:left" placeholder="E-posta" />
+      <input class="btn" style="text-align:left" placeholder="Şifre" type="password" />
+      <button class="btn em">Kayıt</button>
     </form>
   </div>
 </div>
 
-<!-- Toast + to top -->
-<div id="toast">IP kopyalandı</div>
-<button id="toTop" class="btn">Yukarı çık</button>
+<!-- Toast -->
+<div id="toast" style="position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(20px);background:rgba(20,30,50,.95);color:#fff;border:1px solid rgba(255,255,255,.12);padding:10px 14px;border-radius:10px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.25s;z-index:200">Kopyalandı</div>
 
 <script>
-/* Body scroll lock for drawer */
-let scrollPos = 0;
-function lockBody(){ scrollPos = window.scrollY; document.body.style.position='fixed'; document.body.style.top = `-${scrollPos}px`; document.body.style.width='100%' }
-function unlockBody(){ document.body.style.position=''; document.body.style.top=''; window.scrollTo(0, scrollPos); }
+/* THEME TOGGLE */
+const root = document.documentElement;
+const pref = localStorage.getItem('theme');
+if(pref==='light') root.classList.add('light');
+document.getElementById('btnTheme').onclick = ()=>{
+  root.classList.toggle('light');
+  localStorage.setItem('theme', root.classList.contains('light')?'light':'dark');
+};
 
-/* Smooth scroll with header offset */
-function smoothTo(id){
-  const el = document.querySelector(id);
-  if(!el) return;
-  const y = el.getBoundingClientRect().top + window.scrollY - 70;
-  window.scrollTo({top:y, behavior:'smooth'});
-}
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click', e=>{
-    const id = a.getAttribute('href');
-    if(id.length>1){
-      e.preventDefault(); smoothTo(id);
-    }
-  });
-});
-
-/* Drawer */
-const drawer = document.getElementById('drawer');
-const scrim  = document.getElementById('closeDrawer');
-function openDrawer(){ drawer.classList.add('open'); lockBody(); }
-function closeDrawer(){ drawer.classList.remove('open'); unlockBody(); }
-document.getElementById('openDrawer').addEventListener('click', openDrawer);
-scrim.addEventListener('click', closeDrawer);
-document.getElementById('xDrawer').addEventListener('click', closeDrawer);
-
-/* Copy IP + toast */
+/* COPY IP */
 const toast = document.getElementById('toast');
-document.getElementById('copyIp').addEventListener('click', async ()=>{
-  const ip = document.getElementById('ipText').textContent.trim();
+document.getElementById('copyIp').onclick = async ()=>{
+  const ip = document.getElementById('ip').textContent.trim();
   try{ await navigator.clipboard.writeText(ip); }catch(e){}
-  toast.textContent = 'IP kopyalandı: ' + ip;
-  toast.style.opacity = '1';
-  toast.style.transform = 'translateX(-50%) translateY(0)';
-  setTimeout(()=>{ toast.style.opacity='0'; toast.style.transform='translateX(-50%) translateY(20px)'; }, 1800);
+  toast.textContent = 'IP kopyalandı: '+ip;
+  toast.style.opacity='1'; toast.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{ toast.style.opacity='0'; toast.style.transform='translateX(-50%) translateY(20px)'; },1600);
+};
+
+/* MODAL HELPERS */
+function openModal(id){ document.querySelector(id).classList.add('open'); }
+function closeModal(id){ document.querySelector(id).classList.remove('open'); }
+document.querySelectorAll('[data-close]').forEach(el=>{
+  el.addEventListener('click', ()=> closeModal(el.getAttribute('data-close')));
 });
 
-/* Modals */
-const modalLogin  = document.getElementById('modalLogin');
-const modalSignup = document.getElementById('modalSignup');
-const show = m => m.classList.add('open');
-const hide = m => m.classList.remove('open');
-document.getElementById('btnLogin').addEventListener('click', ()=>show(modalLogin));
-document.getElementById('btnSignup').addEventListener('click', ()=>show(modalSignup));
-document.getElementById('mLogin').addEventListener('click', ()=>{ closeDrawer(); show(modalLogin); });
-document.getElementById('mSignup').addEventListener('click', ()=>{ closeDrawer(); show(modalSignup); });
-document.querySelectorAll('[data-close]').forEach(el=> el.addEventListener('click', ()=> hide(document.querySelector(el.getAttribute('data-close')))));
-document.getElementById('swapToSignup').addEventListener('click', (e)=>{ e.preventDefault(); hide(modalLogin); show(modalSignup);});
-document.getElementById('swapToLogin').addEventListener('click',  (e)=>{ e.preventDefault(); hide(modalSignup); show(modalLogin);});
-
-/* Scroll-spy & to-top */
-const secIds = ['ozellikler','rutbeler','kurallar','rehber','ekip','magaza','indir','oyver','destek'];
-const sections = secIds.map(id => document.getElementById(id)).filter(Boolean);
-const links = [...document.querySelectorAll('.nav-core a')];
-function spy(){
-  let current = secIds[0];
-  const y = window.scrollY + 120;
-  for(const s of sections){ if(s && s.offsetTop <= y) current = s.id; }
-  links.forEach(a => a.style.color = (a.getAttribute('href') === '#'+current) ? 'var(--txt)' : 'var(--muted)');
-  document.getElementById('toTop').classList.toggle('show', window.scrollY>500);
-}
-window.addEventListener('scroll', spy, {passive:true}); spy();
-document.getElementById('toTop').addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
-
-/* A11y – reduce motion */
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.documentElement.style.scrollBehavior = 'auto';
-}
+/* Buttons -> Modals */
+const map = [
+  ['#btnRanks','#modalRanks'],['#btnRanks2','#modalRanks'],
+  ['#btnRules','#modalRules'],['#btnRules2','#modalRules'],
+  ['#btnStore','#modalStore'],['#btnStore2','#modalStore'],
+  ['#btnTeam' ,'#modalTeam' ],
+  ['#btnLogin','#modalLogin'],['#btnSignup','#modalSignup']
+];
+map.forEach(([b,m])=>{ const el=document.querySelector(b); if(el) el.addEventListener('click',()=>openModal(m)); });
 </script>
 </body>
 </html>
