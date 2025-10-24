@@ -21,13 +21,34 @@
   }
   *{box-sizing:border-box}html,body{height:100%}
   body{
-    margin:0;background:radial-gradient(1200px 800px at 10% -10%,rgba(125,181,255,.08),transparent),
-    radial-gradient(1000px 600px at 90% 10%,rgba(100,224,193,.08),transparent),var(--bg);
-    color:var(--text); font:14px/1.55 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-    overflow-x:hidden;
+    margin:0;background:var(--bg);color:var(--text);
+    font:14px/1.55 Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    overflow-x:hidden; position:relative;
   }
   a{color:inherit;text-decoration:none}
   .container{max-width:1080px;margin:0 auto;padding:0 14px}
+
+  /* ===== background stars ===== */
+  .stars, .stars:after, .stars:before{
+    position:fixed; inset:0; content:""; pointer-events:none; z-index:-1;
+    background-repeat:repeat;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.9) 99%, transparent 100%),
+      radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,.7) 99%, transparent 100%),
+      radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,.85) 99%, transparent 100%),
+      radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,.8) 99%, transparent 100%),
+      radial-gradient(1px 1px at 50% 50%, rgba(255,255,255,.75) 99%, transparent 100%);
+    animation: twinkle 12s linear infinite;
+    opacity:.45;
+  }
+  .stars:after{animation-duration:18s;opacity:.35;filter:blur(.2px)}
+  .stars:before{animation-duration:24s;opacity:.25;filter:blur(.4px)}
+  @keyframes twinkle{
+    0%{background-position:0 0, 0 0, 0 0, 0 0, 0 0}
+    50%{background-position:8px 6px, -12px 10px, 16px -8px, -8px -10px, 6px -6px}
+    100%{background-position:0 0, 0 0, 0 0, 0 0, 0 0}
+  }
+
   /* =============== NAV =============== */
   .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,.0));backdrop-filter:blur(8px)}
   .navbar{display:flex;align-items:center;gap:10px;padding:10px 0}
@@ -39,6 +60,7 @@
   .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(125,181,255,.15);color:#d9e6ff;font-weight:700}
   .lamp{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(125,181,255,.15);cursor:pointer}
   .lamp svg{width:18px;height:18px}
+
   /* =============== HERO =============== */
   .hero{padding:18px 0 8px}
   .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.02));border:1px solid rgba(125,181,255,.15);
@@ -53,23 +75,16 @@
   .inline-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
   .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;background:rgba(20,220,120,.1);border:1px solid rgba(20,220,120,.25);color:#a9ffcf;font-weight:700}
   .light .pill{color:#0a7a54}
-  /* ===== Sections compact ===== */
+
   section{margin:14px 0}
   section .card{padding:14px}
   h3{margin:0 0 10px;font-size:20px}
   ul{margin:0;padding-left:18px}
   li{margin:6px 0}
-  /* ===== Floating blocks (subtle) ===== */
-  .bg-block{position:absolute; width:42px;height:42px; transform-style:preserve-3d; opacity:.18; filter:drop-shadow(0 6px 8px rgba(0,0,0,.25))}
-  .block-top{position:absolute;inset:0;background:linear-gradient(#6ee17e,#2fad3a);border-radius:6px 6px 4px 4px}
-  .block-side{position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(#8c5a2f,#5a351e);border-radius:0 0 6px 6px}
-  .b1{left:4%;top:160px;animation:float 7s ease-in-out infinite}
-  .b2{right:8%;top:280px;animation:float 8.5s ease-in-out infinite .5s}
-  .b3{left:16%;top:520px;animation:float 10s ease-in-out infinite .8s}
-  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
   /* ===== Modals / Panels ===== */
-  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-start;justify-content:center;padding:20px;z-index:60}
-  .panel{width:min(860px,96%);background:var(--panel);border:1px solid rgba(125,181,255,.2);border-radius:14px;box-shadow:var(--shadow);padding:16px}
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:flex-start;justify-content:center;padding:20px;z-index:60;overflow:auto}
+  .panel{width:min(860px,96%);background:var(--panel);border:1px solid rgba(125,181,255,.2);border-radius:14px;box-shadow:var(--shadow);padding:16px;max-height:92vh;overflow:auto}
   .panel h3{margin:0 0 8px}
   .panel .close{float:right; background:transparent;border:0;font-size:22px;cursor:pointer;color:var(--mut)}
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -78,6 +93,7 @@
   .rank .tag{font-size:12px;color:var(--mut);font-weight:700}
   .bar{height:10px;border-radius:999px;background:linear-gradient(90deg,var(--pri2),var(--pri));margin:8px 0 4px}
   .rank .perks{margin:0;padding-left:18px}
+
   /* ===== Store list + mini cart ===== */
   .store-item{padding:12px;border-radius:12px;border:1px solid rgba(125,181,255,.18);background:rgba(255,255,255,.03)}
   .store-head{display:flex;justify-content:space-between;align-items:center}
@@ -86,9 +102,9 @@
   .cart-card{width:320px;background:var(--panel);border:1px solid rgba(125,181,255,.2);border-radius:12px;box-shadow:var(--shadow);padding:12px}
   .cart-row{display:flex;justify-content:space-between;margin:6px 0}
   .cart-total{margin-top:8px;padding-top:8px;border-top:1px dashed rgba(125,181,255,.2);display:flex;justify-content:space-between;font-weight:800}
-  /* ===== Footer ===== */
+
   footer{margin:18px 0 24px;color:var(--mut);text-align:center;font-size:12px}
-  /* ===== Responsive ===== */
+
   @media (max-width:720px){
     h2.title{font-size:30px}
     .grid{grid-template-columns:1fr}
@@ -97,6 +113,8 @@
 </style>
 </head>
 <body>
+<div class="stars"></div>
+
 <div class="nav">
   <div class="container navbar">
     <a class="brand" href="#">
@@ -112,7 +130,6 @@
       <button class="chip" data-open="store">Mağaza</button>
       <button class="chip" data-open="team">Ekip</button>
       <button class="lamp" id="themeToggle" title="Gece/Gündüz">
-        <!-- sun/moon -->
         <svg id="iconMoon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 1 0 21 12.79z"/></svg>
       </button>
       <button class="chip" data-open="login">Giriş</button>
@@ -126,9 +143,7 @@
     <h2 class="title">Profesyonel Minecraft Deneyimi</h2>
     <p class="mut">Adil ekonomi, güvenli altyapı ve gelişmiş sistemler. SkyHaven'da eğlence, ticaret ve rekabet bir arada.</p>
     <div class="ip">
-      <div class="box">
-        <strong>IP:</strong> <span id="serverIp">play.skyhavan.com</span>
-      </div>
+      <div class="box"><strong>IP:</strong> <span id="serverIp">play.skyhavan.com</span></div>
       <button class="btn" id="copyIp">Kopyala</button>
     </div>
     <div class="pill"><span style="display:inline-block;width:8px;height:8px;background:#2be38c;border-radius:50%"></span> Online • 128 oyuncu</div>
@@ -146,11 +161,6 @@
     </div>
   </div>
 </div>
-
-<!-- subtle floating grass blocks -->
-<div class="bg-block b1"><div class="block-top"></div><div class="block-side"></div></div>
-<div class="bg-block b2"><div class="block-top"></div><div class="block-side"></div></div>
-<div class="bg-block b3"><div class="block-top"></div><div class="block-side"></div></div>
 
 <section id="features" class="container">
   <div class="card">
@@ -199,7 +209,7 @@
   <div class="panel">
     <button class="close" data-close>&times;</button>
     <h3>Rütbeler</h3>
-    <p class="mut" style="margin-bottom:10px">Rütbeler kademeli ilerler; her seviye öncekinin tüm haklarını içerir.</p>
+    <p class="mut" style="margin-bottom:10px">Kademeli ilerler; her seviye öncekinin tüm haklarını içerir.</p>
     <div class="grid">
       <div class="rank">
         <div class="tag">#1 • Kömür</div>
@@ -273,9 +283,16 @@
     <h3>Kurallar</h3>
     <ul style="margin:8px 0 0 18px">
       <li>Hile, bug ve dupe kesinlikle yasaktır.</li>
-      <li>Hakaret, spam ve toksik davranışlar cezalandırılır.</li>
-      <li>P2W yok: avantajlar dengeli, rekabet adildir.</li>
-      <li>Pazar/ihale dolandırıcılığı yasaktır.</li>
+      <li>Hakaret, spam, flood ve toksik davranışlar yasaktır.</li>
+      <li>Pazar/ihale dolandırıcılığı ve scamming yasaktır.</li>
+      <li>AFK makro/auto-clicker; haksız kazanç sağlayan scriptler yasaktır.</li>
+      <li>Hataları kullanmak yerine bildir: ödül verilir.</li>
+      <li>Reklam ve başka sunucu tanıtımı yasaktır.</li>
+      <li>Herkese açık alanlarda uygunsuz yapı/isim/skin yasaktır.</li>
+      <li>Hedef gösterme, tehdit ve taciz yasaktır.</li>
+      <li>Yetkililere saygılı olun; kararlar tartışılabilir ama hakaret edilemez.</li>
+      <li>Ceza atlatmak için ikinci hesap kullanımı yasaktır.</li>
+      <li>Kurallar gerektiğinde güncellenebilir; güncel liste geçerlidir.</li>
     </ul>
   </div>
 </div>
@@ -321,7 +338,7 @@
   </div>
 </div>
 
-<!-- Team (placeholder button content) -->
+<!-- Team (placeholder) -->
 <div class="overlay" id="team">
   <div class="panel">
     <button class="close" data-close>&times;</button>
@@ -330,12 +347,12 @@
   </div>
 </div>
 
-<!-- Login/Register simple modals -->
+<!-- Login/Register -->
 <div class="overlay" id="login">
   <div class="panel">
     <button class="close" data-close>&times;</button>
     <h3>Giriş Bilgisi</h3>
-    <p class="mut">Sunucuda şifreyle giriş yapılır: <code>/login şifre</code>. Hesabın yoksa kayıt ol!</p>
+    <p class="mut">Sunucuda şifreyle giriş: <code>/login şifre</code>. Hesabın yoksa kayıt ol!</p>
   </div>
 </div>
 <div class="overlay" id="register">
@@ -361,8 +378,7 @@
 
 <script>
   // Theme toggle
-  const toggle = document.getElementById('themeToggle');
-  toggle.addEventListener('click', ()=>{ document.body.classList.toggle('light'); });
+  document.getElementById('themeToggle').addEventListener('click', ()=>{ document.body.classList.toggle('light'); });
 
   // Copy IP
   document.getElementById('copyIp').onclick = ()=>{
@@ -375,7 +391,7 @@
     btn.addEventListener('click', ()=>{
       const id = btn.getAttribute('data-open');
       const el = document.getElementById(id);
-      if(el){ el.style.display='flex'; }
+      if(el){ el.style.display='flex'; el.scrollTop = 0; }
     });
   });
   document.querySelectorAll('[data-close]').forEach(btn=>{
@@ -392,9 +408,7 @@
   let cart = [];
   function renderCart(){
     if(cart.length===0){ itemsEl.innerHTML = '<div class="mut">Sepet boş.</div>'; totalEl.textContent='₺0,00'; return; }
-    itemsEl.innerHTML = cart.map(it=>(
-      `<div class="cart-row"><span>${it.name}</span><span>₺${it.price.toFixed(2)}</span></div>`
-    )).join('');
+    itemsEl.innerHTML = cart.map(it=>(`<div class="cart-row"><span>${it.name}</span><span>₺${it.price.toFixed(2)}</span></div>`)).join('');
     const sum = cart.reduce((a,b)=>a+b.price,0);
     totalEl.textContent = '₺'+sum.toFixed(2);
   }
@@ -407,7 +421,7 @@
     });
   });
 
-  // Small entrance animation for panels
+  // Soft reveal for cards
   const observer = new IntersectionObserver(entries=>{
     for(const e of entries){
       if(e.isIntersecting){ e.target.style.transform='translateY(0)'; e.target.style.opacity='1'; observer.unobserve(e.target); }
